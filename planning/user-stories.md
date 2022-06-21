@@ -12,12 +12,13 @@
 3. As a user I can create a sublist within my main categories
 4. As a user I can share my list via email
 6. As a user I can rate my tasks by priority (reference LightBnB)
-7. popup mascot 
+7. popup mascot
+8. As a user I can choose a category and see all related tasks
 
 ### nouns
-user
-list
-task
-category
+- user
+- list
+- task
+- category
 
 
