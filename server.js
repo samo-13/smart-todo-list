@@ -45,7 +45,6 @@ const tasksRoutes = require("./routes/TasksRoutes");
 app.use("/api/users", usersRoutes(db));
 app.use("/api/lists", listsRoutes(db));
 app.use("/api/tasks", tasksRoutes(db));
-
 //how to bring in auth routes?
 // Note: mount other resources here, using the same pattern above
 
