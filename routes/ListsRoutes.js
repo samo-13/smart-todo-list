@@ -33,7 +33,7 @@ module.exports = (db) => {
 
   //READ ALL lists
   router.get("/", (req, res) => {
-    const { userId } = req.session
+    const { userId } = req.session;
     if (!userId) {
       return res.status(401).send("<h1>You are not logged in.</h1>");
     }
@@ -45,7 +45,7 @@ module.exports = (db) => {
         const lists = data.rows;
         if (lists.length === 0) {
           //if no lists in db.
-          return res.status(200).send("<h1>You haven't created any lists yet.</h1>")
+          return res.status(200).send("<h1>You haven't created any lists yet.</h1>");
         }
         res.status(200).json({ message: "Here are all of your lists!", lists });
 
@@ -71,7 +71,7 @@ module.exports = (db) => {
       .then(data => {
         const list = data.rows[0];
         if (!list) {
-          return res.status(404).send("<h1>List not found!</h1>")
+          return res.status(404).send("<h1>List not found!</h1>");
         }
         res.status(200).json({ message: "Here is your list.", list });
       })
@@ -85,7 +85,7 @@ module.exports = (db) => {
   //UPDATE one list
   router.put("/:id", (req, res) => {
     const { listId } = req.params.id;
-    const { name, icon_url } = req.body //is this correct?
+    const { name, icon_url } = req.body; //is this correct?
     const { userId } = req.session;
     if (!userId) {
       return res.status(401).send("<h1>You are not logged in.</h1>");
@@ -97,7 +97,7 @@ module.exports = (db) => {
       .then(data => {
         const list = data.rows[0];
         if (!list) {
-          return res.status(404).send("<h1>List not found!</h1>")
+          return res.status(404).send("<h1>List not found!</h1>");
         }
         res.status(200).json({ message: "List updated.", list });
       })
@@ -117,13 +117,13 @@ module.exports = (db) => {
     }
 
     db.query(`DELETE FROM lists WHERE id = $1`,
-    [listId])
+      [listId])
       .then(data => {
         const list = data.rows[0];
         if (!list) {
-          return res.status(404).send("<h1>List not found!</h1>")
+          return res.status(404).send("<h1>List not found!</h1>");
         }
-        res.status(204).json({ message: "List deleted." })
+        res.status(204).json({ message: "List deleted." });
       })
       .catch(err => {
         res
