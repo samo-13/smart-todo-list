@@ -8,3 +8,8 @@ INSERT INTO categories (name) VALUES
   ('Restaurants, cafes, etc.'),
   ('Books'),
   ('Products');
+
+INSERT INTO lists (user_id, name, icon_url) VALUES 
+  (3, 'Todos in Canada', null),
+  (1, 'Summer Plan', null),
+  (2, 'My Todos List', null);
