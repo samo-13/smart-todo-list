@@ -1,21 +1,21 @@
 const express = require('express');
 const router  = express.Router();
 
-///add validation! see fruits model
-//https://github.com/pedroagont/webflex-lectures-21mar/blob/main/m05w12/controllers/FruitsController.js
-//add status codes
-
-//do we need to check the user_id of a specific list if each list has its own id?? probably not?
-//^ see queries delete, edit one list, view one list
+//do we want to send html error messages with validation?
 
 module.exports = (db) => {
 
-  //user create new list
+  //CREATE one list
   router.post("/", (req, res) => {
     const { userId } = req.session;
-    //add validation
+    if (!userId) {
+      return res.status(401).send("<h1>You are not logged in.</h1>");
+    }
+
     const { name, icon_url } = req.body;
-    //add validation
+    if (!name || !icon_url) {
+      return res.status(401).send("<h1>Please input list name and icon.</h1>");
+    }
 
     db.query(
       `INSERT into lists (user_id, name, icon_url) VALUES ($1, $2, $3) RETURNING *`,
@@ -31,7 +31,7 @@ module.exports = (db) => {
       });
   });
 
-  //view all lists for user
+  //READ ALL lists
   router.get("/", (req, res) => {
     const { userId } = req.session
     if (!userId) {
@@ -43,6 +43,10 @@ module.exports = (db) => {
       [userId])
       .then(data => {
         const lists = data.rows;
+        if (lists.length === 0) {
+          //if no lists in db.
+          return res.status(200).send("<h1>You haven't created any lists yet.</h1>")
+        }
         res.status(200).json({ message: "Here are all of your lists!", lists });
 
       })
@@ -53,17 +57,22 @@ module.exports = (db) => {
       });
   });
 
-  //view one list for user
+  //READ ONE list
   router.get("/:id", (req, res) => {
     const { listId } = req.params.id;
     const { userId } = req.session;
-    //add validation
+    if (!userId) {
+      return res.status(401).send("<h1>You are not logged in.</h1>");
+    }
 
     db.query(
-      `SELECT * FROM lists WHERE id = $1 AND user_id = $2`,
-      [listId, userId])
+      `SELECT * FROM lists WHERE id = $1`,
+      [listId])
       .then(data => {
         const list = data.rows[0];
+        if (!list) {
+          return res.status(404).send("<h1>List not found!</h1>")
+        }
         res.status(200).json({ message: "Here is your list.", list });
       })
       .catch(err => {
@@ -73,17 +82,23 @@ module.exports = (db) => {
       });
   });
 
-  //edit one list
+  //UPDATE one list
   router.put("/:id", (req, res) => {
     const { listId } = req.params.id;
     const { name, icon_url } = req.body //is this correct?
-    //add validaition
+    const { userId } = req.session;
+    if (!userId) {
+      return res.status(401).send("<h1>You are not logged in.</h1>");
+    }
 
     db.query(
-      `UPDATE lists SET THE VALUES LATER WHERE id = $1`, //set the values here
+      `UPDATE lists SET name = $2, icon_url = $3 WHERE id = $1`,
       [listId, name, icon_url])
       .then(data => {
         const list = data.rows[0];
+        if (!list) {
+          return res.status(404).send("<h1>List not found!</h1>")
+        }
         res.status(200).json({ message: "List updated.", list });
       })
       .catch(err => {
@@ -93,16 +108,21 @@ module.exports = (db) => {
       });
   });
 
-  //deletes one list
+  //DELETE one list
   router.delete("/:id", (req, res) => {
     const { listId } = req.params.id;
-
-    //add validaition
+    const { userId } = req.session;
+    if (!userId) {
+      return res.status(401).send("<h1>You are not logged in.</h1>");
+    }
 
     db.query(`DELETE FROM lists WHERE id = $1`,
     [listId])
       .then(data => {
-        // const list = data.rows[0];
+        const list = data.rows[0];
+        if (!list) {
+          return res.status(404).send("<h1>List not found!</h1>")
+        }
         res.status(204).json({ message: "List deleted." })
       })
       .catch(err => {
