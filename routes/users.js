@@ -14,8 +14,8 @@ module.exports = (db) => {
   // login routes
   router.post('/login', (req, res) => {
     // const {email, password} = req.body;
-    const email = 'billywong@outlook.com';
-    const password = 'password';
+    const email = 'jon-smith99@hotmail.com';
+    const password = 'myPassword';
 
     db.query(`SELECT * FROM users WHERE email = $1`, [email])
       .then(data => {
@@ -54,7 +54,7 @@ module.exports = (db) => {
   // register routes
   router.post('/register', (req, res) => {
     // const {name, email, password, avatar_url} = req.body
-    const [name, email, password, avatar_url] = ['Jon Smith', 'jon-smith3@hotmail.com', 'myPassword', null];
+    const [name, email, password, avatar_url] = ['Jon Smith', 'jon-smith99@hotmail.com', 'myPassword', null];
 
     if (!name || !email || !password) return res.status(400).send('<h1>Please fill in all necessary fields.</h1>');
 
@@ -75,6 +75,20 @@ module.exports = (db) => {
             });
         }
       });
+  });
+
+  router.get('/register', (req, res) => {
+    if (req.session.userId) {
+      db.query(`SELECT * FROM users WHERE id = $1`, [req.session.userId])
+        .then(data => res.send(data.rows[0]))
+        .catch(err => {
+          res
+            .status(500)
+            .json({error: err.message});
+        });
+    } else {
+      res.render('register'); // create register form later?
+    };
   });
 
   return router;
