@@ -11,9 +11,9 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.post('/login', (req, res) => {
-    const {email, password} = req.body;
-    // const email = 'billywong@outlook.com';
-    // const password = 'password';
+    // const {email, password} = req.body;
+    const email = 'billywong@outlook.com';
+    const password = 'password';
 
     db.query(`SELECT * FROM users WHERE email = $1`, [email])
       .then(data => {
@@ -33,6 +33,20 @@ module.exports = (db) => {
   router.post('/logout', (req, res) => {
     req.session = null; // remove browser cookies
     res.render('index');
+  });
+
+  router.get('/login', (req, res) => {
+    if (req.session.userId) {
+      db.query(`SELECT * FROM users WHERE id = $1`, [req.session.userId])
+        .then(data => res.send(data.rows[0]))
+        .catch(err => {
+          res
+            .status(500)
+            .json({error: err.message});
+        });
+    } else {
+      res.status(400).send('<h1>Please log in.</h1>');
+    };
   });
 
   return router;
