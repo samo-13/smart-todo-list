@@ -20,14 +20,14 @@ module.exports = (db) => {
     // dummy data without priority
     const list_id = 1
     const category_id = 1
-    const name = 'Friends'
+    const name = 'Seinfeld'
     const create_at = '2022-05-02'
     const priority = false
 
     // dummy data with priority
     // const list_id = 3
     // const category_id = 2
-    // const name = 'Alloy'
+    // const name = 'Taco Bell'
     // const create_at = '2022-05-02'
     // const priority = true
 
@@ -36,7 +36,8 @@ module.exports = (db) => {
       return res.status(401).send("<h1>You are not logged in.</h1>");
     }
 
-    const { list_id, category_id, name, create_at, priority } = req.body; // do we include category_id here? we will be using API to generate
+    // uncomment line below when app is ready + remove dummy data
+    // const { list_id, category_id, name, create_at, priority } = req.body; // do we include category_id here? we will be using API to generate
     if (!list_id || !category_id  || !name || !create_at) { // include priority? will either be true or false as it's optional
       return res.status(401).send("<h1>Please ensure all required fields are populated!</h1>"); // can change to be more specific
     }
