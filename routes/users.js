@@ -65,6 +65,7 @@ module.exports = (db) => {
         } else {
           db.query(`INSERT INTO users (name, email, password, avatar_url) VALUES ($1, $2, $3, $4) RETURNING *`, [name, email, bcrypt.hashSync(password, 10), avatar_url])
             .then(data => {
+              req.session.userId = data.rows[0].id;
               res.status(201).send(data.rows[0]);
             })
             .catch(err => {
