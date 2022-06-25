@@ -3,16 +3,33 @@ const router  = express.Router();
 
 module.exports = (db) => {
 
+  // --------------------------------------------------------------------------------------------------
   // GET /task --- view form to create task
 
   router.get("/", (req, res) => { // /task isn't needed - use just /
 
   });
 
+  // --------------------------------------------------------------------------------------------------
   // POST /task --- create new task
 
   router.post("/", (req, res) => { // /task isn't needed - use just /
-    const { userId } = req.session;
+    // uncomment line below when app is ready + remove dummy data
+    // const { userId } = req.session;
+
+    // dummy data without priority
+    const list_id = 1
+    const category_id = 1
+    const name = 'Friends'
+    const create_at = '2022-05-02'
+    const priority = false
+
+    // dummy data with priority
+    // const list_id = 3
+    // const category_id = 2
+    // const name = 'Alloy'
+    // const create_at = '2022-05-02'
+    // const priority = true
 
     // make sure user is logged in
     if (!userId) {
@@ -38,12 +55,14 @@ module.exports = (db) => {
       });
   });
 
+  // --------------------------------------------------------------------------------------------------
   // PUT /task/:id --- edit one task
 
   router.put("/:id", (req, res) => { // /task/:id isn't needed - use just /:id
 
   });
 
+  // --------------------------------------------------------------------------------------------------
   // DELETE /task/:id -- delete one task
 
   router.delete("/:id", (req, res) => { // /task/:id isn't needed - use just /:id
