@@ -31,7 +31,7 @@ module.exports = (db) => {
   });
 
   router.post('/logout', (req, res) => {
-    req.session = null; // remove broswer cookies
+    req.session = null; // remove browser cookies
     res.render('index');
   });
 
