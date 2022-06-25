@@ -11,12 +11,11 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.post('/login', (req, res) => {
-    const email = 'billywong@outlook.com';
-    const pw = 'password';
+    const {email, password} = req.body;
 
     db.query(`SELECT * FROM users WHERE email = $1`, [email])
       .then(data => {
-        if (data.rowCount > 0 && bcrypt.compareSync(pw, data.rows[0].password)) {
+        if (data.rowCount > 0 && bcrypt.compareSync(password, data.rows[0].password)) {
           res.send(data.rows[0]);
         } else {
           res.status(400).send('<h1>Please check your email and password</h1>');
