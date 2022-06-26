@@ -107,8 +107,33 @@ module.exports = (db) => {
   // --------------------------------------------------------------------------------------------------
   // DELETE /task/:id -- delete one task
 
+  // use
   router.delete("/:id", (req, res) => { // /task/:id isn't needed - use just /:id
+    // const { taskId } = req.params.id;
+    // const { userId } = req.session;
 
+    const taskId = 1;
+    const userId = 1;
+
+    if (!userId) {
+      return res.status(401).send("<h1>You are not logged in.</h1>");
+    }
+
+    db.query(`DELETE FROM tasks WHERE id = $1`,
+      [taskId]
+      )
+      .then(data => {
+        const task = data.rows[0];
+        if (!task) {
+          return res.status(404).send("<h1>Task not found!</h1>");
+        }
+        res.status(204).json({ message: "Task deleted." });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
 
   return router;
