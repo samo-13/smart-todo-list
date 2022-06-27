@@ -20,7 +20,7 @@ module.exports = (db) => {
       .then(data => {
         if (data.rowCount > 0 && bcrypt.compareSync(password, data.rows[0].password)) {
           req.session.userId = data.rows[0].id; // set cookies
-          res.send(data.rows[0]);
+          res.redirect('/');
         } else {
           res.status(400).send('<h1>Please check your email and password</h1>');
         }
@@ -33,7 +33,7 @@ module.exports = (db) => {
 
   router.post('/logout', (req, res) => {
     req.session = null; // remove browser cookies
-    res.render('index');
+    res.redirect('/login');
   });
 
   router.get('/login', (req, res) => {
@@ -60,8 +60,9 @@ module.exports = (db) => {
     db.query(`SELECT * FROM users WHERE email = $1`, [email])
       .then(data => {
         if (data.rowCount > 0) {
-          res.status(400).send('<h1>This email has been registered.</h1>');
+          return res.status(400).send('<h1>This email has been registered.</h1>');
         } else {
+          // insert new user data if it's not in the database
           db.query(`INSERT INTO users (name, email, password, avatar_url) VALUES ($1, $2, $3, $4) RETURNING *`, [name, email, bcrypt.hashSync(password, 10), avatar_url])
             .then(data => {
               req.session.userId = data.rows[0].id;
@@ -73,6 +74,11 @@ module.exports = (db) => {
                 .json({error: err.message});
             });
         }
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({error: err.message});
       });
   });
 
