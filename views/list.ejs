@@ -6,16 +6,45 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="/styles/main.css" type="text/css" /> -->
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/list.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+
+  <!-- load custom fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <!-- link font awesome for icons from cdnjs.com -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body>
-  <h1>See specific lists here</h1>
-  <button>Test Task Post Route</button>
+<body class="list_page">
+  <!-- include nav bar -->
+  <%- include('partials/_nav') %>
+  <header class="list_header">
+    <h1 id="list_name">List Title</h1>
+      <h3>See specific list content here</h3>
+  </header>
+<div class="list_container">
+  <article>
+      <div class="task_left">
+        <input type="checkbox" id="check_task">
+        <h2 id="task_name">Task Name</h2>
+        <i class="fa-solid fa-book"></i>
+      </div>
+      <div class="task_right">
+          <a id="task_priority" href="#"><i class="fa-solid fa-star"></i></a>
+          <a id="task_edit" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+          <a id="task_delete" href="#"><i class="fa-solid fa-trash-can"></i></a>
+      </div>
+  </div>
+  </footer>
+</article>
+  <!-- <button>Test Task Post Route</button> -->
+</div>
 </body>
 
 </html>
