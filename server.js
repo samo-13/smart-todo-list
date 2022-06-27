@@ -56,6 +56,13 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+
+// TEMPORTARY FOR LAYOUT TESTING
+app.get("/list", (req, res) => {
+  console.log('Hello!')
+  res.render("list");
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
