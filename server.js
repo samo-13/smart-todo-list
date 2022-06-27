@@ -43,7 +43,7 @@ const tasksRoutes = require("./routes/TasksRoutes");
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/lists", listsRoutes(db));
-app.use("/api/tasks", tasksRoutes(db));
+//app.use("/api/tasks", tasksRoutes(db));
 
 // Note: mount other resources here, using the same pattern above
 
