@@ -7,7 +7,6 @@
 
 const bcrypt = require('bcrypt');
 const express = require('express');
-const {reset} = require('nodemon');
 const router = express.Router();
 
 module.exports = (db) => {
