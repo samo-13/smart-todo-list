@@ -52,6 +52,7 @@ module.exports = (db) => {
       [list_id, category_id, name, create_at, priority]
       )
       .then(data => {
+        console.log('CONSOLE 1:', data.rows[0]);
         const task = data.rows[0]; // array comes back as recently created task
         res.status(201).json({ message: "Task created.", task });
       })
@@ -67,17 +68,16 @@ module.exports = (db) => {
   // --------------------------------------------------------------------------------------------------
   // PUT /task/:id --- edit one task
 
-  router.put("/:id", (req, res) => { // /task/:id isn't needed - use just /:id
-    // const { taskId } = req.params.id;
+  router.put("/update/:id", (req, res) => { // /task/:id isn't needed - use just /:id
+    let taskId = req.params.id;
     // const { list_id, category_id, name, create_at, priority } = req.body; //is this correct?
     // const { userId } = req.session;
 
     // dummy data
-    const taskId = 3
+    // const taskId = 4
     // const list_id = 1
     const category_id = 4
-    const name = 'Changed Name'
-    const created_at = '2022-05-02'
+    const name = 'Changed Name 7'
     const priority = false
     const userId = 1;
 
@@ -86,16 +86,21 @@ module.exports = (db) => {
     }
 
     db.query(
-      // `UPDATE tasks SET name = $2, category_id = $3, name = $4, create_at = $5, priority = $6 WHERE id = $1`,
-      `UPDATE tasks SET category_id = $2, name = $3, created_at = $4, priority = $5 WHERE id = $1`, // do we want to update create_at on edit?
-      [taskId, category_id, name, created_at, priority]
-      )
+
+      `UPDATE tasks SET category_id = $2, name = $3, priority = $4 WHERE id = $1 RETURNING *`, // do we want to update create_at on edit?
+      [taskId, category_id, name, priority])
+
       .then(data => {
+
         const task = data.rows[0];
+        console.log('DATA:', data);
+        console.log('DATA.ROWS:', data.rows)
+        console.log('TASK:', task);
+
         if (!task) {
           return res.status(404).send("<h1>Task not found!</h1>");
         }
-        res.status(200).json({ message: "Task updated.", task });
+        res.status(200).json({ message: "Task updated.", taskId });
       })
       .catch(err => {
         res
@@ -107,13 +112,11 @@ module.exports = (db) => {
   // --------------------------------------------------------------------------------------------------
   // DELETE /task/:id -- delete one task
 
-  // use
   router.delete("/:id", (req, res) => { // /task/:id isn't needed - use just /:id
-    // const { taskId } = req.params.id;
+    // const { taskId } = req.params;
     // const { userId } = req.session;
 
-    const taskId = 2;
-    // const listId = 3;
+    const taskId = 6;
     const userId = 1;
 
     if (!userId) {
@@ -124,6 +127,7 @@ module.exports = (db) => {
       [taskId]
       )
       .then(data => {
+        console.log('DELETE:', data.rows[0])
         const task = data.rows[0];
         if (!task) {
           return res.status(404).send("<h1>Task not found!</h1>");
