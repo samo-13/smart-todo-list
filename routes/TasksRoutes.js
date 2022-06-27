@@ -20,11 +20,11 @@ module.exports = (db) => {
     // const { userId } = req.session;
 
     // dummy data without priority
-    const list_id = 1
-    const category_id = 1
-    const name = 'Stranger Things'
-    const create_at = '2022-05-02'
-    const priority = false
+    const list_id = 1;
+    const category_id = 1;
+    const name = 'Stranger Things';
+    const create_at = '2022-05-02';
+    const priority = false;
     const userId = 1;
 
     // dummy data with priority
@@ -50,7 +50,7 @@ module.exports = (db) => {
     db.query(
       `INSERT into tasks (list_id, category_id, name, create_at, priority) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
       [list_id, category_id, name, create_at, priority]
-      )
+    )
       .then(data => {
         console.log('CONSOLE 1:', data.rows[0]);
         const task = data.rows[0]; // array comes back as recently created task
@@ -76,9 +76,9 @@ module.exports = (db) => {
     // dummy data
     // const taskId = 4
     // const list_id = 1
-    const category_id = 4
-    const name = 'Changed Name 7'
-    const priority = false
+    const category_id = 4;
+    const name = 'Changed Name 7';
+    const priority = false;
     const userId = 1;
 
     if (!userId) {
@@ -94,7 +94,7 @@ module.exports = (db) => {
 
         const task = data.rows[0];
         console.log('DATA:', data);
-        console.log('DATA.ROWS:', data.rows)
+        console.log('DATA.ROWS:', data.rows);
         console.log('TASK:', task);
 
         if (!task) {
@@ -125,9 +125,9 @@ module.exports = (db) => {
 
     db.query(`DELETE FROM tasks WHERE id = $1 RETURNING *`,
       [taskId]
-      )
+    )
       .then(data => {
-        console.log('DELETE:', data.rows[0])
+        console.log('DELETE:', data.rows[0]);
         const task = data.rows[0];
         if (!task) {
           return res.status(404).send("<h1>Task not found!</h1>");
