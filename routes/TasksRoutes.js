@@ -22,7 +22,7 @@ module.exports = (db) => {
     // dummy data without priority
     const list_id = 1
     const category_id = 1
-    const name = 'Seinfeld'
+    const name = 'Stranger Things'
     const create_at = '2022-05-02'
     const priority = false
     const userId = 1;
@@ -73,11 +73,11 @@ module.exports = (db) => {
     // const { userId } = req.session;
 
     // dummy data
-    const taskId = 1
-    const list_id = 1
-    const category_id = 1
+    const taskId = 3
+    // const list_id = 1
+    const category_id = 4
     const name = 'Changed Name'
-    const create_at = '2022-05-02'
+    const created_at = '2022-05-02'
     const priority = false
     const userId = 1;
 
@@ -87,15 +87,15 @@ module.exports = (db) => {
 
     db.query(
       // `UPDATE tasks SET name = $2, category_id = $3, name = $4, create_at = $5, priority = $6 WHERE id = $1`,
-      `UPDATE tasks SET category_id = $2, name = $3, create_at = $4, priority = $5 WHERE id = $1`, // do wew want to update create_at on edit?
-      [taskId, category_id, name, create_at, priority]
+      `UPDATE tasks SET category_id = $2, name = $3, created_at = $4, priority = $5 WHERE id = $1`, // do we want to update create_at on edit?
+      [taskId, category_id, name, created_at, priority]
       )
       .then(data => {
         const task = data.rows[0];
         if (!task) {
           return res.status(404).send("<h1>Task not found!</h1>");
         }
-        res.status(200).json({ message: "Task updated.", list });
+        res.status(200).json({ message: "Task updated.", task });
       })
       .catch(err => {
         res
@@ -112,11 +112,12 @@ module.exports = (db) => {
     // const { taskId } = req.params.id;
     // const { userId } = req.session;
 
-    const taskId = 1;
+    const taskId = 2;
+    // const listId = 3;
     const userId = 1;
 
     if (!userId) {
-      return res.status(401).send("<h1>You are not logged in.</h1>");
+      return res.status(401).send("<h1>You are not logged in.</h1>"); // should this be listId?
     }
 
     db.query(`DELETE FROM tasks WHERE id = $1`,
