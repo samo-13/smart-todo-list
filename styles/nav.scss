@@ -12,6 +12,14 @@ nav {
   height: 50px;
 }
 
+.nav-right {
+  display: flex;
+  background-color: lightpink;
+  justify-content: space-around;
+  padding: 0px 10px;
+  word-spacing: 10px;
+}
+
 .navbar-logo {
   display: flex;
   // width: 96px;
