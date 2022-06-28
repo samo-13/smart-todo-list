@@ -1,93 +1,42 @@
+
 const bcrypt = require('bcrypt');
+
+/*
+ * All routes for Users are defined here
+ * Since this file is loaded in server.js into api/users,
+ *   these routes are mounted onto /users
+ * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
+ */
+
 const express = require('express');
-const router = express.Router();
+const router  = express.Router();
 
 module.exports = (db) => {
-  // login routes
-  router.post('/login', (req, res) => {
-    // const {email, password} = req.body;
-    const email = 'jon-smith99@hotmail.com';
-    const password = 'myPassword';
-
-    db.query(`SELECT * FROM users WHERE email = $1`, [email])
+  router.get("/", (req, res) => {
+    db.query(`SELECT * FROM users;`)
       .then(data => {
-        if (data.rowCount > 0 && bcrypt.compareSync(password, data.rows[0].password)) {
-          req.session.userId = data.rows[0].id; // set cookies
-          res.redirect('/');
-        } else {
-          res.status(400).send('<h1>Please check your email and password</h1>');
-        }
-      }).catch(err => {
-        res
-          .status(500)
-          .json({error: err.message});
-      });
-  });
-
-  router.post('/logout', (req, res) => {
-    req.session = null; // remove browser cookies
-    res.redirect('/login');
-  });
-
-  router.get('/login', (req, res) => {
-    if (req.session.userId) {
-      db.query(`SELECT * FROM users WHERE id = $1`, [req.session.userId])
-        .then(data => res.send(data.rows[0]))
-        .catch(err => {
-          res
-            .status(500)
-            .json({error: err.message});
-        });
-    } else {
-      res.status(400).send('<h1>Please log in.</h1>');
-    };
-  });
-
-  // register routes
-  router.post('/register', (req, res) => {
-    // const {name, email, password, avatar_url} = req.body
-    const [name, email, password, avatar_url] = ['Jon Smith', 'jon-smith99@hotmail.com', 'myPassword', null];
-
-    if (!name || !email || !password) return res.status(400).send('<h1>Please fill in all necessary fields.</h1>');
-
-    db.query(`SELECT * FROM users WHERE email = $1`, [email])
-      .then(data => {
-        if (data.rowCount > 0) {
-          return res.status(400).send('<h1>This email has been registered.</h1>');
-        } else {
-          // insert new user data if it's not in the database
-          db.query(`INSERT INTO users (name, email, password, avatar_url) VALUES ($1, $2, $3, $4) RETURNING *`, [name, email, bcrypt.hashSync(password, 10), avatar_url])
-            .then(data => {
-              req.session.userId = data.rows[0].id;
-              res.status(201).send(data.rows[0]);
-            })
-            .catch(err => {
-              res
-                .status(500)
-                .json({error: err.message});
-            });
-        }
+        const users = data.rows;
+        res.json({ users });
       })
       .catch(err => {
         res
           .status(500)
-          .json({error: err.message});
+          .json({ error: err.message });
       });
   });
-
-  router.get('/register', (req, res) => {
-    if (req.session.userId) {
-      db.query(`SELECT * FROM users WHERE id = $1`, [req.session.userId])
-        .then(data => res.send(data.rows[0]))
-        .catch(err => {
-          res
-            .status(500)
-            .json({error: err.message});
-        });
-    } else {
-      res.render('register'); // create register form later?
-    };
-  });
-
   return router;
 };
+
+//add auth routes here.
+//if we want to view/edit profile, can add this here. Better for stretch work.
+//in lightBnB, these are in the user routes
+//Pedro uses
+//authRoutes - login/logout/register
+//indexRoutes - get
+
+//see the video for this
+//aprox 38 mins
+
+
+
+

@@ -1,12 +1,15 @@
 ## Routes
-
 GET /
 index
 
 GET /
 about (stretch)
 
-### Auth Routes
+
+### User
+
+GET /
+profile 
 
 POST /login
 GET /login
@@ -15,9 +18,6 @@ POST /register
 GET /register
 
 POST /logout
-
-### User
-GET /profile
 
 (what about editing profile? Stretch - POST)
 
