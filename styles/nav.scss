@@ -1,0 +1,32 @@
+nav {
+  font-family: 'Roboto', sans-serif;
+  background: lightgreen;
+  position: absolute;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  align-items: center;
+  justify-content: center;
+  top: 0px;
+  border: 1px solid #000000;
+  width: 100%;
+  height: 50px;
+}
+
+.nav-right {
+  display: flex;
+  background-color: lightpink;
+  justify-content: space-around;
+  padding: 0px 10px;
+  word-spacing: 10px;
+}
+
+.navbar-logo {
+  display: flex;
+  // width: 96px;
+  font-style: bold;
+  font-weight: 700;
+  font-size: 26px;
+  color: #000000;
+  align-items: center;
+}
+

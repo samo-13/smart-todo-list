@@ -6,15 +6,47 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+
+  <!-- <link rel="stylesheet" href="/styles/main.css" type="text/css" /> -->
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/home.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+
+  <!-- APP JS -->
+
+  <!-- link bootstrap -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0-beta1/js/bootstrap.min.js" integrity="sha512-Hqe3s+yLpqaBbXM6VA0cnj/T56ii5YjNrMT9v+us11Q81L0wzUG0jEMNECtugqNu2Uq5MSttCg0p4KK0kCPVaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- load custom fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <!-- link font awesome for icons from cdnjs.com -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
-<body>
-  <h1>Have fun! 🥔</h1>
+<body class="home_page">
+  <!-- include nav bar -->
+  <%- include('partials/_nav') %>
+  <header class="list_header">
+    <i class="fa-solid fa-user"></i>
+    <h1 id="list_name">Username</h1>
+    <div class="search-container">
+      <form action="#">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit">Go</button>
+      </form>
+      <div class="task_category">
+        <a id="to_eat" href="#"><i class="fa-solid fa-burger"></i></a>
+        <a id="to_read" href="#"><i class="fa-solid fa-book"></i></a>
+        <a id="to_watch" href="#"><i class="fa-solid fa-tv"></i></a>
+        <a id="to_buy" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+    </div>
+    </div>
+  </header>
+  <div class="lists"></div>
 </body>
-
 </html>

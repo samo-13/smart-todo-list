@@ -7,7 +7,7 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
-const cookieSession = require("cookie-session");
+// const cookieSession = require("cookie-session");
 
 // PG database client/connection setup
 const {Pool} = require("pg");
@@ -35,20 +35,20 @@ app.use(
 
 app.use(express.static("public"));
 
-app.use(cookieSession({
-  name: 'session',
-  keys: ['key1']
-}));
+// app.use(cookieSession({
+//   name: 'session',
+//   keys: ['key1']
+// }));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/UsersRoutes");
+// const usersRoutes = require("./routes/UsersRoutes");
 const listsRoutes = require("./routes/ListsRoutes");
 const tasksRoutes = require("./routes/TasksRoutes");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
+// app.use("/api/users", usersRoutes(db));
 app.use("/api/lists", listsRoutes(db));
 //app.use("/api/tasks", tasksRoutes(db));
 
@@ -60,6 +60,30 @@ app.use("/api/lists", listsRoutes(db));
 
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+// TEMPORTARY FOR LAYOUT TESTING
+app.get("/list", (req, res) => {
+  console.log('Hello!')
+  res.render("list");
+});
+
+// TEMPORTARY FOR LAYOUT TESTING
+app.get("/task_edit_modal", (req, res) => {
+  console.log('Hello Edit Task Modal!')
+  res.render("task_edit_modal");
+});
+
+// TEMPORTARY FOR LAYOUT TESTING
+app.get("/task_create_modal", (req, res) => {
+  console.log('Hello Create Task Modal!')
+  res.render("task_create_modal");
+});
+
+// TEMPORTARY FOR LAYOUT TESTING
+app.get("/list_create_modal", (req, res) => {
+  console.log('Hello Create List Modal!')
+  res.render("list_create_modal");
 });
 
 app.listen(PORT, () => {
