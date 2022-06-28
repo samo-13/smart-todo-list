@@ -56,11 +56,16 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-
 // TEMPORTARY FOR LAYOUT TESTING
 app.get("/list", (req, res) => {
   console.log('Hello!')
   res.render("list");
+});
+
+// TEMPORTARY FOR LAYOUT TESTING
+app.get("/modal", (req, res) => {
+  console.log('Hello Modal!')
+  res.render("modal");
 });
 
 app.listen(PORT, () => {
