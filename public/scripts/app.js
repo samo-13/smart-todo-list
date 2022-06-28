@@ -8,35 +8,36 @@ $(document).ready(function() {
   console.log('HI, FROM DOCUMENT.READY FUNCTION')
 
   // fake list object/data
-  const listsData =
-  [
-    {
-        "id": 2,
-        "user_id": 1,
-        "name": "Summer Plan",
-        "icon_url": null
-    },
-    {
-        "id": 5,
-        "user_id": 1,
-        "name": "Fall Plan",
-        "icon_url": null
-    },
-    {
-        "id": 8,
-        "user_id": 1,
-        "name": "Winter Plan",
-        "icon_url": null
-    }
-]
+//   const listsData =
+//   [
+//     {
+//         "id": 2,
+//         "user_id": 1,
+//         "name": "Summer Plan",
+//         "icon_url": null
+//     },
+//     {
+//         "id": 5,
+//         "user_id": 1,
+//         "name": "Fall Plan",
+//         "icon_url": null
+//     },
+//     {
+//         "id": 8,
+//         "user_id": 1,
+//         "name": "Winter Plan",
+//         "icon_url": null
+//     }
+// ]
 
   const createListElement = (list) => {
     console.log('Inside createListElement')
-    console.log('listsData[i].name:', list.name)
+    console.log('lists[i].name:', list.name)
     // code creating the list element
     const $list =
         $(`
-        <div class="list_container" onclick="location.href='/list:id';" style="cursor: pointer;">
+        <a href = /list:id>
+        <div class="list_container">
           <article>
           <div class="list_left">
             <h2 id="list_name">${list.name}</h2>
@@ -44,6 +45,7 @@ $(document).ready(function() {
           </div>
           </article>
         </div>
+        </a>
       `);
       console.log('createListElement:', $list)
 
@@ -52,27 +54,30 @@ $(document).ready(function() {
 
   // IMPLEMENT TO LOAD LISTS USING AJAX (SIMILAR TO TWEETER)
 
-  // const loadLists = function() {
-  //   console.log('loadLists function')
+  const loadLists = function() {
+    console.log('loadLists function')
 
-  //   $.ajax({
-  //     url: '/lists',
-  //     method: 'GET'
-  //   })
-  //     .then(function(lists) {
-  //       console.log('Success: See lists', lists);
-  //       renderLists(lists);
-  //     });
-  // };
+    $.ajax({
+      url: '/api/lists',
+      method: 'GET',
+      dataType: "json"
+    })
+      .then(function(lists) {
+        console.log('Success: See lists', lists);
+        renderLists(lists);
+      });
+  };
 
-  const renderLists = () => {
-    console.log('renderLists lists:', listsData)
-    for (let i = 0; i < listsData.length; i++) { // loops through lists
+  const renderLists = (listData) => {
+    const lists = listData.lists
+    console.log('renderLists lists:', lists)
 
-      console.log('renderLists lists:', listsData);
-      console.log('renderLists lists[i]:', listsData[i]);
+    for (let i = 0; i < lists.length; i++) { // loops through lists
 
-      let list = listsData[i];
+      console.log('renderLists lists:', lists);
+      console.log('renderLists lists[i]:', lists[i]);
+
+      let list = lists[i];
       list = createListElement(list);
 
       console.log('renderLists createListElement list:', list);
@@ -80,10 +85,6 @@ $(document).ready(function() {
       // to add it to the page so we can make sure it's got all the right elements, classes, etc.
     }
   }
-  renderLists(listsData);
-    // loadLists()
+  // renderLists(listsData);
+    loadLists()
   });
-
-// ------------------------------------------------------------------------------------------------
-// list page show all tasks for individual list
-// ------------------------------------------------------------------------------------------------
