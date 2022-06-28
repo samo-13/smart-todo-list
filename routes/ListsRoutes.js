@@ -45,7 +45,7 @@ module.exports = (db) => {
     // }
 
     //dummy data
-    const userId = 1;
+    const userId = 3;
 
 
     db.query(
