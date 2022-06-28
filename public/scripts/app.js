@@ -1,6 +1,9 @@
 // Client facing scripts here
 
+// ------------------------------------------------------------------------------------------------
 // index page show all lists in individual container
+// ------------------------------------------------------------------------------------------------
+
 $(document).ready(function() {
   console.log('HI, FROM DOCUMENT.READY FUNCTION')
 
@@ -47,6 +50,8 @@ $(document).ready(function() {
     return $list;
   };
 
+  // IMPLEMENT TO LOAD LISTS USING AJAX (SIMILAR TO TWEETER)
+
   // const loadLists = function() {
   //   console.log('loadLists function')
 
@@ -78,3 +83,7 @@ $(document).ready(function() {
   renderLists(listsData);
     // loadLists()
   });
+
+// ------------------------------------------------------------------------------------------------
+// list page show all tasks for individual list
+// ------------------------------------------------------------------------------------------------
