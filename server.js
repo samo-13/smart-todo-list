@@ -63,9 +63,15 @@ app.get("/list", (req, res) => {
 });
 
 // TEMPORTARY FOR LAYOUT TESTING
-app.get("/modal", (req, res) => {
+app.get("/task_edit_modal", (req, res) => {
   console.log('Hello Modal!')
-  res.render("modal");
+  res.render("task_edit_modal");
+});
+
+// TEMPORTARY FOR LAYOUT TESTING
+app.get("/task_create_modal", (req, res) => {
+  console.log('Hello Create Task Modal!')
+  res.render("task_create_modal");
 });
 
 app.listen(PORT, () => {
