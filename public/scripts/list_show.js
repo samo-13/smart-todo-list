@@ -14,16 +14,20 @@ $(document).ready(function() {
     // code creating the task element
     const $task =
         $(`
-        <a href = /list:id>
         <div class="list_container">
-          <article>
-          <div class="list_left">
-            <h2 id="list_name">${list.name}</h2>
-          </div>
-          </div>
-          </article>
+        <article>
+            <div class="task_left">
+              <input type="checkbox" id="check_task">
+              <h2 id="task_name">Task Name</h2>
+              <i class="fa-solid fa-book"></i>
+            </div>
+            <div class="task_right">
+                <a id="task_priority" href="#"><i class="fa-solid fa-star"></i></a>
+                <a id="task_edit" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a id="task_delete" method="DELETE" action="" href="/"><i class="fa-solid fa-trash-can"></i></a>
+            </div>
         </div>
-        </a>
+      </div>
       `);
       console.log('createListElement:', $list)
 

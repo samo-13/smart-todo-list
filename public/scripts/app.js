@@ -34,10 +34,11 @@ $(document).ready(function() {
     console.log('Inside createListElement')
     console.log('lists[i].name:', list.name)
     // code creating the list element
+    //caitlin - updated the name of the div class to lists_container (from list_container)
     const $list =
         $(`
         <a href = /list:id>
-        <div class="list_container">
+        <div class="lists_container">
           <article>
           <div class="list_left">
             <h2 id="list_name">${list.name}</h2>
