@@ -9,7 +9,7 @@ $(document).ready(function() {
 
 
   const createTaskElement = (task) => {
-    console.log('Inside createTistElement')
+    console.log('Inside createTaskElement')
     console.log('tasks[i].name:', task.name)
     // code creating the task element
     const $task =
@@ -18,7 +18,7 @@ $(document).ready(function() {
         <article>
             <div class="task_left">
               <input type="checkbox" id="check_task">
-              <h2 id="task_name">Task Name</h2>
+              <h2 id="task_name">${task.name}</h2>
               <i class="fa-solid fa-book"></i>
             </div>
             <div class="task_right">
@@ -29,32 +29,32 @@ $(document).ready(function() {
         </div>
       </div>
       `);
-      console.log('createListElement:', $list)
+      console.log('createListElement:', $task)
 
-    return $list;
+    return $task;
   };
 
-  // IMPLEMENT TO LOAD LISTS USING AJAX (SIMILAR TO TWEETER)
+  // IMPLEMENT TO LOAD TASKS/ONE LIST USING AJAX (SIMILAR TO TWEETER)
 
-  const loadLists = function() {
-    console.log('loadLists function')
+  const loadList = function() {
+    console.log('loadList function')
 
     $.ajax({
-      url: '/api/lists',
+      url: '/api/lists/:id',
       method: 'GET',
       dataType: "json"
     })
-      .then(function(lists) {
-        console.log('Success: See lists', lists);
-        renderLists(lists);
+      .then(function(list) {
+        console.log('Success: See list', list);
+        renderList(list);
       });
   };
 
-  const renderLists = (listData) => {
-    const lists = listData.lists
-    console.log('renderLists lists:', lists)
+  const renderList = (listData) => {
+    const list = listData.lists
+    console.log('renderList one list:', list)
 
-    for (let i = 0; i < lists.length; i++) { // loops through lists
+    for (let i = 0; i < list.length; i++) { // loops through lists
 
       console.log('renderLists lists:', lists);
       console.log('renderLists lists[i]:', lists[i]);

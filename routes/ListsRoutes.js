@@ -77,7 +77,7 @@ module.exports = (db) => {
 
 
     db.query(
-      `SELECT * FROM lists WHERE id = $1`,
+      `SELECT * FROM lists JOIN tasks ON list_id = lists.id WHERE lists.id = $1;`,
       [id])
       .then(data => {
         const list = data.rows[0];
