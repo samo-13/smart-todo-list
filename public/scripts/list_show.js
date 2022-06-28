@@ -50,6 +50,7 @@ $(document).ready(function() {
       });
   };
 
+  //stopped here - need to figure out how to render the tasks data best. See updated query in ListsRoutes.js
   const renderList = (listData) => {
     const list = listData.lists
     console.log('renderList one list:', list)
