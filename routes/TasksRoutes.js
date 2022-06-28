@@ -5,6 +5,7 @@ module.exports = (db) => {
 
   // --------------------------------------------------------------------------------------------------
   // GET /task --- view form to create task
+  // filtered list of tasks for category? keep as stretch - revisit
 
   // router.get("/", (req, res) => { // /task isn't needed - use just /
   //   // return all tasks that belong to a users list
