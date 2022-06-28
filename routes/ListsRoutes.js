@@ -47,6 +47,7 @@ module.exports = (db) => {
     //dummy data
     const userId = 1;
 
+
     db.query(
       `SELECT * FROM lists WHERE user_id = $1`,
       [userId])
