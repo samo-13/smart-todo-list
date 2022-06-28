@@ -7,15 +7,21 @@ module.exports = (db) => {
 
   //CREATE one list
   router.post("/", (req, res) => {
-    const { userId } = req.session;
-    if (!userId) {
-      return res.status(401).send("<h1>You are not logged in.</h1>");
-    }
+    // const { userId } = req.session;
+    // if (!userId) {
+    //   return res.status(401).send("<h1>You are not logged in.</h1>");
+    // }
 
-    const { name, icon_url } = req.body;
-    if (!name || !icon_url) {
-      return res.status(401).send("<h1>Please input list name and icon.</h1>");
-    }
+    // const { name, icon_url } = req.body;
+    // if (!name || !icon_url) {
+    //   return res.status(401).send("<h1>Please input list name and icon.</h1>");
+    // }
+
+    //dummy data
+    const userId = 1;
+    const name = "things to eat";
+    const icon_url = 'url';
+
 
     db.query(
       `INSERT into lists (user_id, name, icon_url) VALUES ($1, $2, $3) RETURNING *`,
@@ -34,11 +40,13 @@ module.exports = (db) => {
   //READ ALL lists
   router.get("/", (req, res) => {
     // const { userId } = req.session;
+    // if (!userId) {
+    //   return res.status(401).send("<h1>You are not logged in.</h1>");
+    // }
+
+    //dummy data
     const userId = 1;
 
-    if (!userId) {
-      return res.status(401).send("<h1>You are not logged in.</h1>");
-    }
 
     db.query(
       `SELECT * FROM lists WHERE user_id = $1`,
@@ -61,17 +69,19 @@ module.exports = (db) => {
 
   //READ ONE list
   router.get("/:id", (req, res) => {
-    const { listId } = req.params.id;
-    const { userId } = req.session;
-    if (!userId) {
-      return res.status(401).send("<h1>You are not logged in.</h1>");
-    }
+    const { id } = req.params;
+    // const { userId } = req.session;
+    // if (!userId) {
+    //   return res.status(401).send("<h1>You are not logged in.</h1>");
+    // }
+
 
     db.query(
       `SELECT * FROM lists WHERE id = $1`,
-      [listId])
+      [id])
       .then(data => {
         const list = data.rows[0];
+        console.log("list", list)
         if (!list) {
           return res.status(404).send("<h1>List not found!</h1>");
         }
@@ -84,24 +94,29 @@ module.exports = (db) => {
       });
   });
 
+
   //UPDATE one list
   router.put("/:id", (req, res) => {
-    const { listId } = req.params.id;
-    const { name, icon_url } = req.body; //is this correct?
-    const { userId } = req.session;
-    if (!userId) {
-      return res.status(401).send("<h1>You are not logged in.</h1>");
-    }
+    const { id } = req.params;
+    // const { name, icon_url } = req.body; //is this correct?
+    // const { userId } = req.session;
+    // if (!userId) {
+    //   return res.status(401).send("<h1>You are not logged in.</h1>");
+    // }
+
+    //dummy data
+    const name = "things NOT to eat";
+    const icon_url = 'url';
 
     db.query(
-      `UPDATE lists SET name = $2, icon_url = $3 WHERE id = $1`,
-      [listId, name, icon_url])
+      `UPDATE lists SET name = $2, icon_url = $3 WHERE id = $1 RETURNING *`,
+      [id, name, icon_url])
       .then(data => {
         const list = data.rows[0];
         if (!list) {
           return res.status(404).send("<h1>List not found!</h1>");
         }
-        res.status(200).json({ message: "List updated.", list });
+       res.status(200).json({ message: "List updated.", list });
       })
       .catch(err => {
         res
@@ -112,14 +127,14 @@ module.exports = (db) => {
 
   //DELETE one list
   router.delete("/:id", (req, res) => {
-    const { listId } = req.params.id;
-    const { userId } = req.session;
-    if (!userId) {
-      return res.status(401).send("<h1>You are not logged in.</h1>");
-    }
+    const { id } = req.params;
+    // const { userId } = req.session;
+    // if (!userId) {
+    //   return res.status(401).send("<h1>You are not logged in.</h1>");
+    // }
 
-    db.query(`DELETE FROM lists WHERE id = $1`,
-      [listId])
+    db.query(`DELETE FROM lists WHERE id = $1 RETURNING *`,
+      [id])
       .then(data => {
         const list = data.rows[0];
         if (!list) {
