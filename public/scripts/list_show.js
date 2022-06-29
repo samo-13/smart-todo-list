@@ -13,6 +13,7 @@ $(document).ready(function() {
 
     const listName = task.list_name;
     const taskName = task.task_name;
+    const taskId = task.task_id
     console.log('listName', listName);
     console.log('taskName', taskName);
 
@@ -28,7 +29,7 @@ $(document).ready(function() {
           <div class="task_right">
               <a id="task_priority" href="#"><i class="fa-solid fa-star"></i></a>
               <a id="task_edit" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-              <a id="task_delete" method="DELETE" action="" href="/"><i class="fa-solid fa-trash-can"></i></a>
+              <a id="task_delete" method="DELETE" action="/delete/${taskId}" href="/"><i class="fa-solid fa-trash-can"></i></a>
           </div>
           </article>
         </div>
