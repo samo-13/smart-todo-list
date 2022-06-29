@@ -23,9 +23,9 @@
       <!-- &times; gives us close icon -->
       <span class="close-modal-button" id="closeModalButton">&times;</span>
       <h3>Edit task: < TASK NAME >!</h3>
-      <form action="/api/tasks" method="PUT">
+      <form method="PUT" action="/api/tasks">
             <label for="task-name">New task name:</label>
-            <input type="text" id="list-name" name="lists.name">
+            <input type="text" id="task_name" name="task_name">
             <button>Submit</button>
       </form>
     </div>

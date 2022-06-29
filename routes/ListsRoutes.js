@@ -35,7 +35,6 @@ module.exports = (db) => {
     }
 
     // REMOVED ICON_URL for testing
-
     if (!name) {
       return res.status(401).send("<h1>Please input list name.</h1>");
     }
@@ -45,8 +44,9 @@ module.exports = (db) => {
       `INSERT into lists (user_id, name, icon_url) VALUES ($1, $2, $3) RETURNING *`,
       [userId, name, icon_url])
       .then(data => {
-        const list = data.rows[0];
-        res.status(201).json({ message: "List created.", list });
+        // const list = data.rows[0];
+        res.redirect("/");
+        // res.status(201).json({ message: "List created.", list });
       })
       .catch(err => {
         res
@@ -54,7 +54,6 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
 
-      res.redirect("/");
   });
 
   //READ ALL lists
