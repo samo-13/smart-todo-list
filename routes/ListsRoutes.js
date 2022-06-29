@@ -45,7 +45,7 @@ module.exports = (db) => {
     // }
 
     //dummy data
-    const userId = 3;
+    const userId = 1;
 
 
     db.query(
@@ -75,13 +75,12 @@ module.exports = (db) => {
     //   return res.status(401).send("<h1>You are not logged in.</h1>");
     // }
 
-
     db.query(
-      `SELECT * FROM lists JOIN tasks ON list_id = lists.id WHERE lists.id = $1;`,
+      `SELECT * FROM lists JOIN tasks ON lists.id = list_id WHERE lists.id = $1;`,
       [id])
       .then(data => {
         const list = data.rows[0];
-        console.log("list", list)
+        console.log("list in listsRoutes", list)
         if (!list) {
           return res.status(404).send("<h1>List not found!</h1>");
         }
