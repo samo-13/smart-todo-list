@@ -1,1 +1,15 @@
-body {font-family: 'Roboto', sans-serif;}
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  line-height: 2;
+}
+
+.modal-trigger {
+  background: yellow;
+  padding: 1px 2px;
+  border: 1px;
+}
+
+.modal-trigger:hover {
+  background: teal;
+}
