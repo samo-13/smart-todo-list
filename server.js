@@ -69,21 +69,21 @@ app.get("/list", (req, res) => {
 });
 
 // TEMPORTARY FOR LAYOUT TESTING
-app.get("/task_edit_modal", (req, res) => {
+app.get("/edit_task", (req, res) => {
   console.log('Hello Edit Task Modal!')
-  res.render("task_edit_modal");
+  res.render("edit_task");
 });
 
 // TEMPORTARY FOR LAYOUT TESTING
-app.get("/task_create_modal", (req, res) => {
+app.get("/create_task", (req, res) => {
   console.log('Hello Create Task Modal!')
-  res.render("task_create_modal");
+  res.render("create_task");
 });
 
 // TEMPORTARY FOR LAYOUT TESTING
-app.get("/list_create_modal", (req, res) => {
+app.get("/create_list", (req, res) => {
   console.log('Hello Create List Modal!')
-  res.render("list_create_modal");
+  res.render("create_list");
 });
 
 app.listen(PORT, () => {
