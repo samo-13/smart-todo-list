@@ -62,10 +62,15 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-// TEMPORTARY FOR LAYOUT TESTING
-app.get("/list", (req, res) => {
+// All good layout! -caitlin says
+app.get("/list/:id", (req, res) => {
   console.log('Hello!')
-  res.render("list");
+  //grab id
+  const { id } = req.params;
+  const templateVars = { id };
+
+  //pass the template variables -
+  res.render("list", templateVars);
 });
 
 // TEMPORTARY FOR LAYOUT TESTING

@@ -76,10 +76,12 @@ module.exports = (db) => {
     // }
 
     db.query(
-      `SELECT * FROM lists JOIN tasks ON lists.id = list_id WHERE lists.id = $1;`,
+      `SELECT lists.name AS list_name, tasks.name AS task_name
+      FROM lists JOIN tasks ON lists.id = list_id WHERE lists.id = $1`,
       [id])
       .then(data => {
-        const list = data.rows[0];
+        // grab all rows in order to grab all tasks
+        const list = data.rows;
         console.log("list in listsRoutes", list)
         if (!list) {
           return res.status(404).send("<h1>List not found!</h1>");
