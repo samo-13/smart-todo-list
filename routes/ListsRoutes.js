@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 const router  = express.Router();
 
@@ -13,6 +14,8 @@ module.exports = (db) => {
     // }
 
     const { list_name } = req.body;
+    let name = list_name;
+
     console.log('LIST_NAME:', list_name);
     console.log('REQ.BODY:', req.body)
     // if (!name || !icon_url) {
@@ -21,20 +24,18 @@ module.exports = (db) => {
 
     // DUMMY DATA FOR TESTING
     const userId = 1;
-    const icon_url = null;
-
-    // console.log('NAME:', name)
     // const name = "things to eat";
     // const icon_url = 'url';
+
+    // DO WE WANT TO KEEP THIS - IS THIS FOR THE USER ICON OR LIST ICON??
+    const icon_url = null;
 
     if (!userId) {
       return res.status(401).send("<h1>You are not logged in.</h1>");
     }
 
-    let name = list_name;
-
     // REMOVED ICON_URL for testing
-    // const { name } = req.body;
+
     if (!name) {
       return res.status(401).send("<h1>Please input list name.</h1>");
     }
@@ -52,6 +53,8 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
+
+      res.redirect("/");
   });
 
   //READ ALL lists
