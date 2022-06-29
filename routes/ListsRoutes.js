@@ -12,15 +12,32 @@ module.exports = (db) => {
     //   return res.status(401).send("<h1>You are not logged in.</h1>");
     // }
 
-    // const { name, icon_url } = req.body;
+    const { list_name } = req.body;
+    console.log('LIST_NAME:', list_name);
+    console.log('REQ.BODY:', req.body)
     // if (!name || !icon_url) {
     //   return res.status(401).send("<h1>Please input list name and icon.</h1>");
     // }
 
-    //dummy data
+    // DUMMY DATA FOR TESTING
     const userId = 1;
-    const name = "things to eat";
-    const icon_url = 'url';
+    const icon_url = null;
+
+    // console.log('NAME:', name)
+    // const name = "things to eat";
+    // const icon_url = 'url';
+
+    if (!userId) {
+      return res.status(401).send("<h1>You are not logged in.</h1>");
+    }
+
+    let name = list_name;
+
+    // REMOVED ICON_URL for testing
+    // const { name } = req.body;
+    if (!name) {
+      return res.status(401).send("<h1>Please input list name.</h1>");
+    }
 
 
     db.query(
