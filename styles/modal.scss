@@ -16,7 +16,8 @@ body {
 }
 
 .list-modal {
-  // display: none;
+  // hides the modal until the js triggers it open
+  display: none;
   position: fixed;
   // position in front of page
   padding: 10px;
@@ -42,7 +43,7 @@ body {
 .close-modal-button {
   color: red;
   float: right;
-  font-size: 50px;
+  font-size: 35px;
 }
 
 // change x color when user hovers
