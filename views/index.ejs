@@ -55,13 +55,14 @@
 
   <span class="modal-link" id="modalLink"><i class="fa-solid fa-plus"></i></span>
 
+  <!-- https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data -->
   <div id="createListModal" class="list-modal">
     <div class="list-modal-content">
       <!-- &times; gives us close icon -->
       <span class="close-modal-button" id="closeModalButton">&times;</span>
       <h3>Create new list!</h3>
       <p>Add at least one task to get started!</p>
-      <form action="/api/lists" method="post">
+      <form method="POST" action="/api/lists">
             <label for="list-name">List Name:</label>
             <input type="text" id="list-name" name="lists.name">
 
@@ -71,7 +72,7 @@
             <label for="task-2">Task 2:</label>
             <input type="task" id="task" name="task">
 
-            <button>Submit</button>
+            <button type="submit">Submit</button>
       </form>
     </div>
   </div>
