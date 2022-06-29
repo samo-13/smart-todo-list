@@ -4,12 +4,29 @@ body {
   line-height: 2;
 }
 
-.modal-trigger {
+.modal-link {
+  font-size: 26;
   background: yellow;
   padding: 1px 2px;
   border: 1px;
 }
 
-.modal-trigger:hover {
+.modal-link:hover {
   background: teal;
+}
+
+.list-modal {
+  // display: none;
+  position: fixed;
+  // position in front of page
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 50;
+  width: 50;
+  // enables scroll if content is too big
+  overflow: auto;
+  // use rgba to set opacity
+  background-color: rgba(206, 63, 63, 0.6) /* white with 60% opacity */
+
 }
