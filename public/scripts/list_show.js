@@ -43,7 +43,7 @@ $(document).ready(function() {
 
   const loadList = function() {
     console.log('loadList function')
-    var listId = $("#list_id").val();
+    const listId = $("#list_id").val();
 
     $.ajax({
       url: `/api/lists/${listId}`,
@@ -51,7 +51,10 @@ $(document).ready(function() {
       dataType: "json"
     })
       .then(function(list) {
-        console.log('Success: See list', list);
+        $("#list_name").text(list.list[0].list_name)
+        //grabbing list name element from the DOM and setting its text
+
+        console.log('Success: See list', list.list[0]);
         renderList(list);
       });
   };
@@ -70,7 +73,8 @@ $(document).ready(function() {
       task = createListElement(task);
 
       console.log('created element task', task);
-      $('.list').append(task);// takes return value and appends it to the listscontainer
+      $('.list').append(task);// appending to the DOM
+      //takes return value and appends it to the listscontainer
       // to add it to the page so we can make sure it's got all the right elements, classes, etc.
     }
 

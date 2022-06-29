@@ -65,11 +65,8 @@ app.get("/", (req, res) => {
 // All good layout! -caitlin says
 app.get("/list/:id", (req, res) => {
   //grab id
-  console.log('req body', req.body)
   const { id } = req.params;
-  
-  const { list_name } = req.body;
-  const templateVars = { id, list_name };
+  const templateVars = { id };
 
   //pass the template variables -
   res.render("list", templateVars);
