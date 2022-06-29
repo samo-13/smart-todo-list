@@ -1,5 +1,5 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (db) => {
 
@@ -13,8 +13,15 @@ module.exports = (db) => {
   // });
 
   // --------------------------------------------------------------------------------------------------
-  // POST /task --- create new task
+  const generateCategory = require('../lib/generateCategory');
 
+  router.post("/test", (req, res) => {
+    generateCategory('watch harry potter')
+      .then(re => res.send(re.data.choices[0].text))
+      .catch(err => console.log(err));
+  });
+
+  // POST /task --- create new task
   router.post("/", (req, res) => { // /task isn't needed - use just /
     // uncomment line below when app is ready + remove dummy data
     // console.log('REQ.SESSION:', req.session);
@@ -43,7 +50,7 @@ module.exports = (db) => {
     // uncomment line below when app is ready + remove dummy data
     // const { list_id, category_id, name, create_at, priority } = req.body; // do we include category_id here? we will be using API to generate
     // category_id will likely not be needed depending if we use a method to get category or not
-    if (!list_id || !category_id  || !name || !create_at) { // include priority? will either be true or false as it's optional
+    if (!list_id || !category_id || !name || !create_at) { // include priority? will either be true or false as it's optional
       return res.status(401).send("<h1>Please ensure all required fields are populated!</h1>"); // can change to be more specific
     }
 
@@ -55,12 +62,12 @@ module.exports = (db) => {
       .then(data => {
         console.log('CONSOLE 1:', data.rows[0]);
         const task = data.rows[0]; // array comes back as recently created task
-        res.status(201).json({ message: "Task created.", task });
+        res.status(201).json({message: "Task created.", task});
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .json({error: err.message});
       });
   });
 
@@ -101,12 +108,12 @@ module.exports = (db) => {
         if (!task) {
           return res.status(404).send("<h1>Task not found!</h1>");
         }
-        res.status(200).json({ message: "Task updated.", taskId });
+        res.status(200).json({message: "Task updated.", taskId});
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .json({error: err.message});
       });
   });
 
@@ -133,12 +140,12 @@ module.exports = (db) => {
         if (!task) {
           return res.status(404).send("<h1>Task not found!</h1>");
         }
-        res.status(204).json({ message: "Task deleted." }); // message isn't logged due to 204 No Content response https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+        res.status(204).json({message: "Task deleted."}); // message isn't logged due to 204 No Content response https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .json({error: err.message});
       });
   });
 
