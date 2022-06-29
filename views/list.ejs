@@ -11,6 +11,9 @@
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/list.css" type="text/css" />
 
+  <!-- Link createlist modal form styling -->
+  <link rel="stylesheet" href="/styles/create_task.css" type="text/css" />
+
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
 
   <!-- App JS -->
@@ -51,6 +54,27 @@
     </div>
   </article> -->
   <input type='hidden' value="<%= id %>" id = "list_id">
+
+  <span class="modal-link" id="modalLink"><i class="fa-solid fa-plus"></i></span>
+  <!-- <button id="modalLink" class="modal-link">Click Here</button> -->
+
+  <div id="createTaskModal" class="task-modal">
+    <div class="task-modal-content">
+      <!-- &times; gives us close icon -->
+      <span class="close-modal-button" id="closeModalButton">&times;</span>
+      <h3>Create new task!</h3>
+      <p>Add at least one task to get started!</p>
+      <form method="POST" action="/api/tasks">
+            <label for="task-name">Task Name:</label>
+            <input type="text" id="task_name" name="task_name">
+            <input type="checkbox" id="task_priority" name="task_priority" value="">
+            <button>Submit</button>
+            <p>Your task will be auto-categorized upon submission.</p>
+      </form>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="/scripts/create_task.js"></script>
 
 </body>
 
