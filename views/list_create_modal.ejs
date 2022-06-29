@@ -23,21 +23,18 @@
       <!-- &times; gives us close icon -->
       <span class="close-modal-button" id="closeModalButton">&times;</span>
       <h3>Create new list!</h3>
+      <p>Add at least one task to get started!</p>
       <form action="/api/lists" method="post">
-        <ul>
-          <li>
             <label for="list-name">List Name:</label>
             <input type="text" id="list-name" name="lists.name">
-          </li>
-          <li>
+
             <label for="task-1">Task 1:</label>
             <input type="task" id="task" name="task">
-          </li>
-          <li>
+
             <label for="task-2">Task 2:</label>
-            <textarea id="task" name="task"></textarea>
-          </li>
-         </ul>
+            <input type="task" id="task" name="task">
+
+            <button>Submit</button>
       </form>
     </div>
   </div>
