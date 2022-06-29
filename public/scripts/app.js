@@ -36,7 +36,7 @@ $(document).ready(function() {
     // code creating the list element
     const $list =
         $(`
-        <a href = /list:id>
+        <a href = /list/${list.id}>
         <div class="list_container">
           <article>
           <div class="list_left">

@@ -94,13 +94,14 @@ module.exports = (db) => {
     //   return res.status(401).send("<h1>You are not logged in.</h1>");
     // }
 
-
     db.query(
-      `SELECT * FROM lists WHERE id = $1`,
+      `SELECT lists.name AS list_name, tasks.name AS task_name, tasks.id AS task_id
+      FROM lists JOIN tasks ON lists.id = list_id WHERE lists.id = $1`,
       [id])
       .then(data => {
-        const list = data.rows[0];
-        console.log("list", list)
+        // grab all rows in order to grab all tasks
+        const list = data.rows;
+        console.log("list in listsRoutes", list)
         if (!list) {
           return res.status(404).send("<h1>List not found!</h1>");
         }
