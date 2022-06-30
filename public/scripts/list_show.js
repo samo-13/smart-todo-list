@@ -44,6 +44,7 @@ $(document).ready(function() {
               console.log('The edit icon was clicked!');
               console.log('TASK ID:', ${taskId})
 
+
               const closeEditModalButton = document.getElementById("closeEditModalButton");
 
               let displayEditModal = function() {
