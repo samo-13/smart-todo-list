@@ -105,7 +105,7 @@ module.exports = (db) => {
   // --------------------------------------------------------------------------------------------------
   // PUT /task/:id --- edit one task
 
-  router.put("/update/:id", (req, res) => { // /task/:id isn't needed - use just /:id
+  router.put("/:id", (req, res) => { // /task/:id isn't needed - use just /:id
     let taskId = req.params.id;
     // const { list_id, category_id, name, create_at, priority } = req.body; //is this correct?
     // const { userId } = req.session;
@@ -149,7 +149,7 @@ module.exports = (db) => {
   // --------------------------------------------------------------------------------------------------
   // DELETE /task/:id -- delete one task
 
-  router.delete("/delete/:id", (req, res) => { // /task/:id isn't needed - use just /:id
+  router.delete("/:id", (req, res) => { // /task/:id isn't needed - use just /:id
     let taskId = req.params.id;
     // const { userId } = req.session;
 

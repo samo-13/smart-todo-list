@@ -36,16 +36,18 @@ $(document).ready(function() {
     // code creating the list element
     const $list =
         $(`
-        <a href = /list/${list.id}>
+
         <div class="list_container">
           <article>
           <div class="list_left">
-            <h2 id="list_name">${list.name}</h2>
+          <a href = /list/${list.id}><h2 id="list_name">${list.name}</h2></a>
           </div>
+          <div class="list_right">
+          <form method="DELETE" action='/list/${list.id}'><button type="submit">Delete</button></form>
           </div>
           </article>
         </div>
-        </a>
+
       `);
       console.log('createListElement:', $list)
 

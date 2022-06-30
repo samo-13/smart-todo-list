@@ -14,8 +14,11 @@ $(document).ready(function() {
     const listName = task.list_name;
     const taskName = task.task_name;
     const taskId = task.task_id
+    const listId = $("#list_id").val();
     console.log('listName', listName);
     console.log('taskName', taskName);
+    console.log('taskId', taskId);
+    console.log('listId', listId);
 
     const $list =
         $(`
@@ -29,7 +32,7 @@ $(document).ready(function() {
           <div class="task_right">
               <a id="task_priority" href="#"><i class="fa-solid fa-star"></i></a>
               <a id="task_edit" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-              <a id="task_delete" method="DELETE" action="/delete/${taskId}" href="/"><i class="fa-solid fa-trash-can"></i></a>
+              <form method="DELETE" action="/api/tasks/${taskId}"><a id="task_delete" href="/list/${listId}"><i class="fa-solid fa-trash-can"></i></a></form>
           </div>
           </article>
         </div>
