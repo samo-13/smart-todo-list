@@ -15,7 +15,7 @@ const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
 db.connect();
 
-console.log(dbParams)
+console.log(dbParams);
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -73,21 +73,21 @@ app.get("/list/:id", (req, res) => {
 });
 
 // TEMPORTARY FOR LAYOUT TESTING
-app.get("/edit_task", (req, res) => {
-  console.log('Hello Edit Task Modal!')
-  res.render("edit_task");
+app.get("/task_edit_modal", (req, res) => {
+  console.log('Hello Edit Task Modal!');
+  res.render("task_edit_modal");
 });
 
 // TEMPORTARY FOR LAYOUT TESTING
-app.get("/create_task", (req, res) => {
-  console.log('Hello Create Task Modal!')
-  res.render("create_task");
+app.get("/task_create_modal", (req, res) => {
+  console.log('Hello Create Task Modal!');
+  res.render("task_create_modal");
 });
 
 // TEMPORTARY FOR LAYOUT TESTING
-app.get("/create_list", (req, res) => {
-  console.log('Hello Create List Modal!')
-  res.render("create_list");
+app.get("/list_create_modal", (req, res) => {
+  console.log('Hello Create List Modal!');
+  res.render("list_create_modal");
 });
 
 app.listen(PORT, () => {

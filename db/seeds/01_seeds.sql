@@ -5,7 +5,7 @@ INSERT INTO users (name, email, password, avatar_url) VALUES
 
 INSERT INTO categories (name) VALUES
   ('Film / Series'),
-  ('Restaurants, cafes, etc.'),
+  ('Restaurants / Cafes / etc.'),
   ('Books'),
   ('Products');
 
