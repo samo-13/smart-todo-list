@@ -49,7 +49,7 @@
     <div class="edit-task-modal-content">
       <!-- &times; gives us close icon -->
       <span class="edit-close-modal-button" id="closeEditModalButton">&times;</span>
-      <h3>Edit task: TASK NAME!</h3>
+      <h3>Edit task: <span id="editTaskNameId"></span></h3>
       <form method="PUT" action="/api/tasks/">
             <label for="task-name">New task name:</label>
             <input type="text" id="task_name" name="task_name">
@@ -78,6 +78,9 @@
   </div>
   <script type="text/javascript" src="/scripts/create_edit_task.js"></script>
   <script defer type="text/javascript" src="/scripts/list_show.js"></script>
+  <script>
+
+</script>
 </body>
 
 </html>
