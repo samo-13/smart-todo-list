@@ -32,14 +32,32 @@ $(document).ready(function() {
           <div class="task_right">
               <a id="task_priority" href="#"><i class="fa-solid fa-star"></i></a>
               <span class="edit_task_link" id="editTaskIconLink"><i class="fa-solid fa-pen-to-square" id="editIconModalLink"></i></span>
-              <form method="DELETE" action="/api/tasks/${taskId}"><a id="task_delete" href="/list/${listId}"><i class="fa-solid fa-trash-can"></i></a></form>
+              <form method="POST" action="/api/tasks/${taskId}"><a id="task_delete" href="/list/${listId}"><i class="fa-solid fa-trash-can"></i></a></form>
           </div>
           </article>
         </div>
+
         <script>
             $('.list').on("click", '.edit_task_link', function() {
               console.log('The edit icon was clicked!');
+              console.log('TASK ID:', ${taskId})
+
+              const closeEditModalButton = document.getElementById("closeEditModalButton");
+
+              let displayEditModal = function() {
+                console.log('Hello from displayEditModal function');
+                editTaskModal.style.display = 'block';
+              };
+
+              let exitEditModal = function() {
+                console.log('Hello from closeEditModal function');
+                editTaskModal.style.display = 'none';
+              };
+
+              displayEditModal();
+              closeEditModalButton.addEventListener('click', exitEditModal);
           });
+
         </script>
       `);
 
