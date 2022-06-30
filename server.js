@@ -7,6 +7,7 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const methodOverride = require('method-override');
 // const cookieSession = require("cookie-session");
 
 // PG database client/connection setup
@@ -20,6 +21,7 @@ console.log(dbParams);
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan("dev"));
+app.use(methodOverride("_method"));
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended: true}));
@@ -45,6 +47,7 @@ app.use(express.static("public"));
 // const usersRoutes = require("./routes/UsersRoutes");
 const listsRoutes = require("./routes/ListsRoutes");
 const tasksRoutes = require("./routes/TasksRoutes");
+const viewsRoutes = require("./routes/ViewsRoutes");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -58,37 +61,10 @@ app.use("/api/tasks", tasksRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
+// for page rendering
+app.use("/", viewsRoutes(db));
 
-// All good layout! -caitlin says
-app.get("/list/:id", (req, res) => {
-  //grab id
-  const { id } = req.params;
-  const templateVars = { id };
 
-  //pass the template variables -
-  res.render("list", templateVars);
-});
-
-// TEMPORTARY FOR LAYOUT TESTING
-app.get("/task_edit_modal", (req, res) => {
-  console.log('Hello Edit Task Modal!');
-  res.render("task_edit_modal");
-});
-
-// TEMPORTARY FOR LAYOUT TESTING
-app.get("/task_create_modal", (req, res) => {
-  console.log('Hello Create Task Modal!');
-  res.render("task_create_modal");
-});
-
-// TEMPORTARY FOR LAYOUT TESTING
-app.get("/list_create_modal", (req, res) => {
-  console.log('Hello Create List Modal!');
-  res.render("list_create_modal");
-});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

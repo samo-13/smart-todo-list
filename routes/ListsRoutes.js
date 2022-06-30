@@ -1,6 +1,6 @@
-const { response } = require('express');
+const {response} = require('express');
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 //do we want to send html error messages with validation?
 
@@ -13,11 +13,11 @@ module.exports = (db) => {
     //   return res.status(401).send("<h1>You are not logged in.</h1>");
     // }
 
-    const { list_name } = req.body;
+    const {list_name} = req.body;
     let name = list_name;
 
     console.log('LIST_NAME:', list_name);
-    console.log('REQ.BODY:', req.body)
+    console.log('REQ.BODY:', req.body);
     // if (!name || !icon_url) {
     //   return res.status(401).send("<h1>Please input list name and icon.</h1>");
     // }
@@ -51,7 +51,7 @@ module.exports = (db) => {
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .json({error: err.message});
       });
 
   });
@@ -76,19 +76,19 @@ module.exports = (db) => {
           //if no lists in db.
           return res.status(200).send("<h1>You haven't created any lists yet.</h1>");
         }
-        res.status(200).json({ message: "Here are all of your lists!", lists });
+        res.status(200).json({message: "Here are all of your lists!", lists});
 
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .json({error: err.message});
       });
   });
 
   //READ ONE list
   router.get("/:id", (req, res) => {
-    const { id } = req.params;
+    const {id} = req.params;
     // const { userId } = req.session;
     // if (!userId) {
     //   return res.status(401).send("<h1>You are not logged in.</h1>");
@@ -101,23 +101,23 @@ module.exports = (db) => {
       .then(data => {
         // grab all rows in order to grab all tasks
         const list = data.rows;
-        console.log("list in listsRoutes", list)
+        console.log("list in listsRoutes", list);
         if (!list) {
           return res.status(404).send("<h1>List not found!</h1>");
         }
-        res.status(200).json({ message: "Here is your list.", list });
+        res.status(200).json({message: "Here is your list.", list});
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .json({error: err.message});
       });
   });
 
 
   //UPDATE one list
   router.put("/:id", (req, res) => {
-    const { id } = req.params;
+    const {id} = req.params;
     // const { name, icon_url } = req.body; //is this correct?
     // const { userId } = req.session;
     // if (!userId) {
@@ -136,18 +136,18 @@ module.exports = (db) => {
         if (!list) {
           return res.status(404).send("<h1>List not found!</h1>");
         }
-       res.status(200).json({ message: "List updated.", list });
+        res.status(200).json({message: "List updated.", list});
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .json({error: err.message});
       });
   });
 
   //DELETE one list
-  router.delete("/:id", (req, res) => {
-    const { id } = req.params;
+  router.delete("/:id/delete", (req, res) => {
+    const {id} = req.params;
     // const { userId } = req.session;
     // if (!userId) {
     //   return res.status(401).send("<h1>You are not logged in.</h1>");
@@ -160,12 +160,14 @@ module.exports = (db) => {
         if (!list) {
           return res.status(404).send("<h1>List not found!</h1>");
         }
-        res.status(204).json({ message: "List deleted." });
+
+        res.status(204).redirect('back');
+
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .json({error: err.message});
       });
   });
 
