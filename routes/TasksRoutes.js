@@ -20,7 +20,9 @@ module.exports = (db) => {
     // uncomment line below when app is ready + remove dummy data
     // console.log('REQ.SESSION:', req.session);
     // const { userId } = req.session;
+    // const { task_name } = req.body;
 
+    console.log('HELLO FROM POST /API/TASKS');
     // dummy data without priority
     // const list_id = 1;
     // // const category_id = 1;
