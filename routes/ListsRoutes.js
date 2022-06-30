@@ -13,18 +13,18 @@ module.exports = (db) => {
     //   return res.status(401).send("<h1>You are not logged in.</h1>");
     // }
 
-    const { list_name } = req.body;
-    let name = list_name;
+    // const { list_name } = req.body;
+    // let name = list_name;
 
-    console.log('LIST_NAME:', list_name);
-    console.log('REQ.BODY:', req.body)
+    // console.log('LIST_NAME:', list_name);
+    // console.log('REQ.BODY:', req.body)
     // if (!name || !icon_url) {
     //   return res.status(401).send("<h1>Please input list name and icon.</h1>");
     // }
 
     // DUMMY DATA FOR TESTING
     const userId = 1;
-    // const name = "things to eat";
+    const name = "things to eat";
     // const icon_url = 'url';
 
     // DO WE WANT TO KEEP THIS - IS THIS FOR THE USER ICON OR LIST ICON??
@@ -44,9 +44,9 @@ module.exports = (db) => {
       `INSERT into lists (user_id, name, icon_url) VALUES ($1, $2, $3) RETURNING *`,
       [userId, name, icon_url])
       .then(data => {
-        // const list = data.rows[0];
+        const list = data.rows[0];
         res.redirect("/");
-        // res.status(201).json({ message: "List created.", list });
+        res.status(201).json({ message: "List created.", list });
       })
       .catch(err => {
         res
@@ -160,7 +160,8 @@ module.exports = (db) => {
         if (!list) {
           return res.status(404).send("<h1>List not found!</h1>");
         }
-        res.status(204).json({ message: "List deleted." });
+        // res.status(204).json({ message: "List deleted." });
+        res.redirect("/");
       })
       .catch(err => {
         res

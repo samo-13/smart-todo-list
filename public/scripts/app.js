@@ -36,14 +36,13 @@ $(document).ready(function() {
     // code creating the list element
     const $list =
         $(`
-
         <div class="list_container">
           <article>
           <div class="list_left">
           <a href = /list/${list.id}><h2 id="list_name">${list.name}</h2></a>
           </div>
           <div class="list_right">
-          <form method="DELETE" action='/list/${list.id}'><button type="submit">Delete</button></form>
+          <form method="DELETE" action="/api/lists/${list.id}"><button id="list_delete" type="submit">Delete</button></form>
           </div>
           </article>
         </div>
@@ -51,8 +50,13 @@ $(document).ready(function() {
       `);
       console.log('createListElement:', $list)
 
+
     return $list;
   };
+
+  $('#list_delete').click(() => {
+    
+  })
 
   // IMPLEMENT TO LOAD LISTS USING AJAX (SIMILAR TO TWEETER)
 
