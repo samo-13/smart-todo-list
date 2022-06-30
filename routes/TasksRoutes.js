@@ -56,7 +56,7 @@ module.exports = (db) => {
       .then(resp => {
         categories.forEach(category => {
           if (resp.data.choices[0].text.includes(category)) {
-            // query db to retrieve category_id 
+            // query db to retrieve category_id
             db.query(`SELECT id FROM categories WHERE name = $1`, [category])
               .then(data => {
                 const category_id = data.rows[0].id;
@@ -149,7 +149,7 @@ module.exports = (db) => {
   // --------------------------------------------------------------------------------------------------
   // DELETE /task/:id -- delete one task
 
-  router.delete("/:id", (req, res) => { // /task/:id isn't needed - use just /:id
+  router.delete("/:id/delete", (req, res) => { // /task/:id isn't needed - use just /:id
     let taskId = req.params.id;
     // const { userId } = req.session;
 

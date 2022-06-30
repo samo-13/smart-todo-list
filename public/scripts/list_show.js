@@ -25,20 +25,22 @@ $(document).ready(function() {
         <div class="list_container">
           <article>
             <div class="task_left">
-              <input type="checkbox" id="check_task">
+              <input type="checkbox" id="check_task-${taskId}">
               <h2 id="task_name">${taskName}</h2>
               <i class="fa-solid fa-book"></i>
           </div>
           <div class="task_right">
               <a id="task_priority" href="#"><i class="fa-solid fa-star"></i></a>
-              <span class="edit_task_link" id="editTaskIconLink"><i class="fa-solid fa-pen-to-square" id="editIconModalLink"></i></span>
-              <form method="POST" action="/api/tasks/${taskId}"><a id="task_delete" href="/list/${listId}"><i class="fa-solid fa-trash-can"></i></a></form>
+              <span class="edit_task_link" id="editTaskIconLink-${taskId}"><i class="fa-solid fa-pen-to-square" id="editIconModalLink"></i></span>
+              <form method="post" action="/api/tasks/${taskId}"/delete?_method=DELETE><a id="task_delete" href="/list/${listId}"><i class="fa-solid fa-trash-can"></i></a></form>
           </div>
           </article>
         </div>
 
+
         <script>
-            $('.list').on("click", '.edit_task_link', function() {
+            $('.list').on("click", '#editTaskIconLink-${taskId}', function() {
+
               console.log('The edit icon was clicked!');
               console.log('TASK ID:', ${taskId})
 
@@ -56,7 +58,8 @@ $(document).ready(function() {
 
               displayEditModal();
               closeEditModalButton.addEventListener('click', exitEditModal);
-          });
+            });
+
 
         </script>
       `);
