@@ -39,7 +39,7 @@ $(document).ready(function () {
         <div class="list_container">
           <article>
           <div class="list_left">
-          <a href = /list/${list.id}><h2 id="list_name">${list.name}</h2></a>
+          <a href = /lists/${list.id}><h2 id="list_name">${list.name}</h2></a>
           </div>
           <div class="list_right">
           <form method="post" action='/api/lists/${list.id}/delete?_method=DELETE'><button type="submit">Delete</button></form>
