@@ -28,7 +28,7 @@ $(document).ready(function() {
           </div>
           <div class="task_right">
               <span class="fa-solid fa-star" id="task_priority"></span>
-              <span class="edit_task_link" id="edit_task_link"><i class="fa-solid fa-pen-to-square"></i></span>
+              <span class="edit_task_link" id="editTaskIconLink"><i class="fa-solid fa-pen-to-square" id="editIconModalLink"></i></span>
               <span class="fa-solid fa-trash-can" id="task_delete" method="DELETE" action="/delete/${taskId}"></span>
           </div>
           </article>
