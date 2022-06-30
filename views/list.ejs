@@ -11,13 +11,12 @@
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/list.css" type="text/css" />
 
+  <link rel="stylesheet" href="/styles/edit_task.css" type="text/css" />
+
   <!-- Link createlist modal form styling -->
   <link rel="stylesheet" href="/styles/create_task.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-
-  <!-- App JS -->
-  <script defer type="text/javascript" src="/scripts/list_show.js"></script>
 
   <!-- link bootstrap -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0-beta1/js/bootstrap.min.js" integrity="sha512-Hqe3s+yLpqaBbXM6VA0cnj/T56ii5YjNrMT9v+us11Q81L0wzUG0jEMNECtugqNu2Uq5MSttCg0p4KK0kCPVaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -40,24 +39,29 @@
   </header>
 <div class="list"></div>
 
-
-  <!-- <article>
-    <div class="task_left">
-      <input type="checkbox" id="check_task">
-      <h2 id="task_name">task name</h2>
-      <i class="fa-solid fa-book"></i>
-    </div>
-    <div class="task_right">
-        <a id="task_priority" href="#"><i class="fa-solid fa-star"></i></a>
-        <a id="task_edit" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-        <a id="task_delete" method="DELETE" action="" href="/"><i class="fa-solid fa-trash-can"></i></a>
-    </div>
-  </article> -->
   <input type='hidden' value="<%= id %>" id = "list_id">
 
-  <span class="modal-link" id="modalLink"><i class="fa-solid fa-plus"></i></span>
+  <!-- EDIT TASK MODAL -->
+  <span class="edit-modal-link" id="editTaskModalLink"><i class="fa-solid fa-plus"></i></span>
   <!-- <button id="modalLink" class="modal-link">Click Here</button> -->
 
+  <div class="edit-task-modal" id="editTaskModal">
+    <div class="edit-task-modal-content">
+      <!-- &times; gives us close icon -->
+      <span class="edit-close-modal-button" id="closeEditModalButton">&times;</span>
+      <h3>Edit task: < TASK NAME >!</h3>
+      <form method="PUT" action="/api/tasks">
+            <label for="task-name">New task name:</label>
+            <input type="text" id="task_name" name="task_name">
+            <button>Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- CREATE TASK MODAL LINK -->
+  <span class="modal-link" id="modalLink"><i class="fa-solid fa-plus"></i></span>
+
+  <!-- CREATE TASK MODAL -->
   <div id="createTaskModal" class="task-modal">
     <div class="task-modal-content">
       <!-- &times; gives us close icon -->
@@ -74,8 +78,8 @@
     </div>
   </div>
 
-  <script type="text/javascript" src="/scripts/create_task.js"></script>
-
+  <script type="text/javascript" src="/scripts/create_edit_task.js"></script>
+  <script defer type="text/javascript" src="/scripts/list_show.js"></script>
 </body>
 
 </html>

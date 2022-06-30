@@ -3,24 +3,26 @@
 // ---------------------------------------------------------------------------------------------------------
 
 // Returns a reference to the first object with the specified value of the ID attribute.
-const modal = document.getElementById("editTaskModal");
-const modalLink = document.getElementById("modalLink");
+const editModal = document.getElementById("editTaskModal");
+const editModalLink = document.getElementById("editTaskModalLink");
+
 
 // Returns a reference to the first object with the specified value of the ID attribute.
-const closeModalButton = document.getElementById("closeModalButton");
+const closeModalButton = document.getElementById("closeEditModalButton");
 
 // open the modal changing the display: none to display: block css value
-let displayModal = function() {
-  console.log('Hello from displayModal function');
-  modal.style.display = 'block';
+let displayEditModal = function() {
+  console.log('Hello from displayEditModal function');
+  editTaskModal.style.display = 'block';
 };
 
 // close the modal by enabling the display: none css value
-let exitModal = function() {
-  console.log('Hello from closeModal function');
-  modal.style.display = 'none';
+let exitEditModal = function() {
+  console.log('Hello from closeEditModal function');
+  editTaskModal.style.display = 'none';
 };
 
 // listen for modalLink click
-modalLink.addEventListener('click', displayModal);
-closeModalButton.addEventListener('click', exitModal);
+editModalLink.addEventListener('click', displayEditModal);
+closeEditModalButton.addEventListener('click', exitEditModal);
+

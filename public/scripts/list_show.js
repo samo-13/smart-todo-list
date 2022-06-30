@@ -27,9 +27,9 @@ $(document).ready(function() {
               <i class="fa-solid fa-book"></i>
           </div>
           <div class="task_right">
-              <a id="task_priority" href="#"><i class="fa-solid fa-star"></i></a>
-              <a id="task_edit" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-              <a id="task_delete" method="DELETE" action="/delete/${taskId}" href="/"><i class="fa-solid fa-trash-can"></i></a>
+              <span class="fa-solid fa-star" id="task_priority"></span>
+              <span class="edit_task_link" id="edit_task_link"><i class="fa-solid fa-pen-to-square"></i></span>
+              <span class="fa-solid fa-trash-can" id="task_delete" method="DELETE" action="/delete/${taskId}"></span>
           </div>
           </article>
         </div>
