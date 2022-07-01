@@ -10,14 +10,20 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    res.render("index");
+    db.query(`SELECT name from users WHERE id = $1`, [req.session.userId])
+      .then(data => {
+        // res.send(data.rows[0]);
+        console.log(data.rows[0]);
+        const name = data.rowCount > 0 ? data.rows[0].name : 'User';
+        res.render('index', { name });
+      });
   });
 
   // All good layout! -caitlin says
   router.get("/lists/:id", (req, res) => {
     //grab id
-    const {id} = req.params;
-    const templateVars = {id};
+    const { id } = req.params;
+    const templateVars = { id };
 
     //pass the template variables -
     res.render("list", templateVars);

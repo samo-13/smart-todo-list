@@ -14,6 +14,7 @@ module.exports = (db) => {
 
   // --------------------------------------------------------------------------------------------------
   const generateCategory = require('../lib/generateCategory');
+  const categories = ['Film / Series', 'Books', 'Restaurants / Cafes / etc.', 'Products'];
 
   // POST /task --- create new task
   router.post("/", (req, res) => { // /task isn't needed - use just /
@@ -22,7 +23,7 @@ module.exports = (db) => {
     // const { userId } = req.session;
     // const { task_name } = req.body;
 
-    console.log('HELLO FROM POST /API/TASKS');
+    // console.log('HELLO FROM POST /API/TASKS');
     // dummy data without priority
     // const list_id = 1;
     // // const category_id = 1;
@@ -32,9 +33,9 @@ module.exports = (db) => {
     const userId = 1;
 
     // // dummy data with priority
-    const list_id = 3;
+    const list_id = 11;
     // const category_id = 2;
-    const name = 'Taco Bell';
+    const name = 'buy a new iphone';
     const create_at = '2022-05-02';
     const priority = true;
 
@@ -50,7 +51,7 @@ module.exports = (db) => {
       return res.status(401).send("<h1>Please ensure all required fields are populated!</h1>"); // can change to be more specific
     }
 
-    const categories = ['Film / Series', 'Books', 'Restaurants / Cafes / etc.', 'Products'];
+
     // fetch openai to sort new task into appropriate category
     generateCategory(name)
       .then(resp => {
@@ -69,35 +70,18 @@ module.exports = (db) => {
                   .then(data => {
                     console.log('CONSOLE 1:', data.rows[0]);
                     const task = data.rows[0]; // array comes back as recently created task
-                    res.status(201).json({message: "Task created.", task});
+                    res.status(201).json({ message: "Task created.", task });
                   })
                   .catch(err => {
                     res
                       .status(500)
-                      .json({error: err.message});
+                      .json({ error: err.message });
                   });
               });
           }
         });
       })
       .catch(err => console.log(err));
-
-    // const category_id = null;
-    // run database query, then
-    //   db.query(
-    //     `INSERT into tasks (list_id, category_id, name, create_at, priority) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-    //     [list_id, category_id, name, create_at, priority]
-    //   )
-    //     .then(data => {
-    //       console.log('CONSOLE 1:', data.rows[0]);
-    //       const task = data.rows[0]; // array comes back as recently created task
-    //       res.status(201).json({message: "Task created.", task});
-    //     })
-    //     .catch(err => {
-    //       res
-    //         .status(500)
-    //         .json({error: err.message});
-    //     });
   });
 
 
@@ -137,12 +121,12 @@ module.exports = (db) => {
         if (!task) {
           return res.status(404).send("<h1>Task not found!</h1>");
         }
-        res.status(200).json({message: "Task updated.", taskId});
+        res.status(200).json({ message: "Task updated.", taskId });
       })
       .catch(err => {
         res
           .status(500)
-          .json({error: err.message});
+          .json({ error: err.message });
       });
   });
 
@@ -174,7 +158,7 @@ module.exports = (db) => {
       .catch(err => {
         res
           .status(500)
-          .json({error: err.message});
+          .json({ error: err.message });
       });
   });
 
