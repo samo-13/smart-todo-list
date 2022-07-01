@@ -18,8 +18,6 @@ module.exports = (db) => {
 
     if (!list_name) {
       return res.status(401).send("<h1>Please input list name.</h1>");
-    } else if (task[0] === "" && task[1] === "") {
-      return res.status(401).send("<h1>Please enter a task.</h1>");
     }
 
     // // const {list_name} = req.body;

@@ -74,45 +74,17 @@
         <!-- &times; gives us close icon -->
         <span class="close-modal-button" id="closeModalButton">&times;</span>
         <h3>Create new list!</h3>
-        <p>Add at least one task to get started!</p>
+
         <form method="POST" action="/api/lists">
           <label for="list-name">List Name:</label>
           <input type="text" id="list_name" name="list_name">
 
-          <label for="task-1">Task 1:</label>
-          <input type="task" id="task" name="task">
-
-          <label for="task-2">Task 2:</label>
-          <input type="task" id="task" name="task">
-
           <button type="submit">Submit</button>
-          <p>Your task will be re-categorized upon submission.</p>
+
         </form>
       </div>
     </div>
 
-    </div>
-  </header>
-  <div class="lists"></div>
-
-  <span class="modal-link" id="modalLink"><i class="fa-solid fa-plus"></i></span>
-
-  <!-- https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data -->
-  <div id="createListModal" class="list-modal">
-    <div class="list-modal-content">
-      <!-- &times; gives us close icon -->
-      <span class="close-modal-button" id="closeModalButton">&times;</span>
-      <h3>Create new list!</h3>
-
-      <form method="POST" action="/api/lists">
-            <label for="list-name">List Name:</label>
-            <input type="text" id="list_name" name="list_name">
-
-            <button type="submit">Submit</button>
-
-      </form>
-    </div>
-  </div>
 
     <!-- This is for the create list modal form functions -->
     <script type="text/javascript" src="/scripts/create_list.js"></script>

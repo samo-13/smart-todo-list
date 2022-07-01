@@ -14,9 +14,9 @@ const router = express.Router();
 module.exports = (db) => {
   // login routes
   router.post('/login', (req, res) => {
-    const { email, password } = req.body;
-    // const email = 'billywong@outlook.com';
-    // const password = 'password';
+    // const { email, password } = req.body;
+    const email = 'billywong@outlook.com';
+    const password = 'password';
 
     db.query(`SELECT * FROM users WHERE email = $1`, [email])
       .then(data => {

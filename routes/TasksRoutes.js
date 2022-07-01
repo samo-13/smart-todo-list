@@ -2,19 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = (db) => {
-
-  const categories = ['Film / Series', 'Books', 'Restaurants / Cafes / etc.', 'Products'];
-
-  // --------------------------------------------------------------------------------------------------
-  // GET /task --- view form to create task
-  // filtered list of tasks for category? keep as stretch - revisit
-
-  // router.get("/", (req, res) => { // /task isn't needed - use just /
-  //   // return all tasks that belong to a users list
-
-  // });
-
-  // --------------------------------------------------------------------------------------------------
   const generateCategory = require('../lib/generateCategory');
   const categories = ['Film / Series', 'Books', 'Restaurants / Cafes / etc.', 'Products'];
 
@@ -22,26 +9,26 @@ module.exports = (db) => {
   router.post("/", (req, res) => { // /task isn't needed - use just /
     // uncomment line below when app is ready + remove dummy data
     // console.log('REQ.SESSION:', req.session);
-    // const { userId } = req.session;
+    const { userId } = req.session;
     const { task_name } = req.body;
 
-    console.log('TASK NAME:', task_name)
+    // console.log('TASK NAME:', task_name)
 
-    // console.log('HELLO FROM POST /API/TASKS');
-    // dummy data without priority
-    const list_id = 1;
-    // // const category_id = 1;
-    // const name = 'Stranger Things';
-    const create_at = '2022-05-02';
-    const priority = false;
-    const userId = 1;
+    // // console.log('HELLO FROM POST /API/TASKS');
+    // // dummy data without priority
+    const list_id = 13;
+    // // // const category_id = 1;
+    // // const name = 'Stranger Things';
+    const create_at = new Date();
+    // const priority = false;
+    // const userId = 1;
 
-    // // dummy data with priority
-    const list_id = 11;
-    // const category_id = 2;
-    const name = 'buy a new iphone';
-    const create_at = '2022-05-02';
-    const priority = true;
+    // // // dummy data with priority
+    // const list_id = 11;
+    // // const category_id = 2;
+    // const name = 'buy a new iphone';
+    // const create_at = '2022-05-02';
+    // const priority = true;
 
     // make sure user is logged in
     if (!userId) {
@@ -49,7 +36,7 @@ module.exports = (db) => {
     }
 
     let name = task_name;
-    const categories = ['Film / Series', 'Books', 'Restaurants / Cafes / etc.', 'Products'];
+    // const categories = ['Film / Series', 'Books', 'Restaurants / Cafes / etc.', 'Products'];
 
     // uncomment line below when app is ready + remove dummy data
     // const { list_id, category_id, name, create_at, priority } = req.body; // do we include category_id here? we will be using API to generate
@@ -60,108 +47,29 @@ module.exports = (db) => {
 
 
     // fetch openai to sort new task into appropriate category
-// MASTER CODE
+    // MASTER CODE
     generateCategory(name)
-    .then(resp => {
-      categories.forEach(category => {
-      if (resp.data.choices[0].text.includes(category)) {
-        db.query(`SELECT id FROM categories WHERE name = $1`, [category])
-          .then(data => {
-            const category_id = data.rows[0].id;
-
-            db.query(`INSERT into tasks (list_id, category_id, name, create_at, priority) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-            [list_id, category_id, name, create_at, priority])
+      .then(resp => {
+        categories.forEach(category => {
+          if (resp.data.choices[0].text.includes(category)) {
+            db.query(`SELECT id FROM categories WHERE name = $1`, [category])
               .then(data => {
-// FORMS CODE BELOW
-                res.redirect(`/lists/${list_id}`);
-              })
-              .catch(err => {
-                res.status(500).json({ error: err.message });
-              });
-          });
-        }});
-    })
-    .catch(err => console.log(err));
-    // // fetch openai to sort new task into appropriate category
-    // generateCategory(name)
-    //   .then(resp => {
-    //     console.log(resp.data.choices[0].text, categories)
-    //     categories.forEach(category => {
-    //       if (resp.data.choices[0].text.includes(category)) {
-    //         // query db to retrieve category_id
-    //         db.query(`SELECT id FROM categories WHERE name = $1`, [category])
-    //           .then(data => {
-    //             console.log('DATA:', data);
-    //             const category_id = data.rows[0].id;
-
-    //             // make new task and insert it to db as soon as category_id is found
-    //             db.query(
-    //               `INSERT into tasks (list_id, category_id, name, create_at, priority) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-    //               [list_id, category_id, name, create_at, priority]
-    //             )
-    //               .then(data => {
-    //                 // console.log('CONSOLE 1:', data.rows[0]);
-    //                 // const task = data.rows[0]; // array comes back as recently created task
-    //                 // res.status(201).json({message: "Task created.", task});
-    //                 res.redirect(`/lists/${list_id}`);
-    //               })
-    //               .catch(err => {
-    //                 res
-    //                   .status(500)
-    //                   .json({error: err.message});
-    //               });
-    //           })
-    //           .catch(err => {
-    //             res
-    //               .status(500)
-    //               .json({error: err.message});
-    //           });
-    //       }
-    //     });
-    //   })
-    //   .catch(err => console.log(err));
-
-    // const category_id = null;
-    // run database query, then
-    //   db.query(
-    //     `INSERT into tasks (list_id, category_id, name, create_at, priority) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-    //     [list_id, category_id, name, create_at, priority]
-    //   )
-    //     .then(data => {
-    //       console.log('CONSOLE 1:', data.rows[0]);
-    //       const task = data.rows[0]; // array comes back as recently created task
-    //       res.status(201).json({message: "Task created.", task});
-    //     })
-    //     .catch(err => {
-    //       res
-    //         .status(500)
-    //         .json({error: err.message});
-    //     });
-// FORMS CODE ENDS
                 const category_id = data.rows[0].id;
 
-                // make new task and insert it to db as soon as category_id is found
-                db.query(
-                  `INSERT into tasks (list_id, category_id, name, create_at, priority) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-                  [list_id, category_id, name, create_at, priority]
-                )
+                db.query(`INSERT into tasks (list_id, category_id, name, create_at) VALUES ($1, $2, $3, $4) RETURNING *`,
+                  [list_id, category_id, name, create_at])
                   .then(data => {
-                    console.log('CONSOLE 1:', data.rows[0]);
-                    const task = data.rows[0]; // array comes back as recently created task
-                    res.status(201).json({ message: "Task created.", task });
+                    // FORMS CODE BELOW
+                    res.redirect(`/lists/${list_id}`);
                   })
                   .catch(err => {
-                    res
-                      .status(500)
-                      .json({ error: err.message });
+                    res.status(500).json({ error: err.message });
                   });
               });
           }
         });
       })
       .catch(err => console.log(err));
-
-// MASTER CODE BEGINS
   });
 
 
@@ -172,126 +80,117 @@ module.exports = (db) => {
   router.put("/:id", (req, res) => { // /task/:id isn't needed - use just /:id
     let taskId = req.params.id;
     // const { list_id, category_id, name, create_at, priority } = req.body; //is this correct?
-    // const { userId } = req.session;
+    const { userId } = req.session;
     const { name } = req.body;
 
     // dummy data
     // const taskId = 4
     // const list_id = 1
     // const name = 'Changed Name 7';
-    const priority = null;
-    const userId = 1;
+    // const priority = null;
+    // const userId = 1;
 
-    console.log('NAME:', name)
+    // console.log('NAME:', name);
 
     if (!userId) {
       return res.status(401).send("<h1>You are not logged in.</h1>");
     }
 
     generateCategory(name)
-    .then(resp => {
-      categories.forEach(category => {
-        if (resp.data.choices[0].text.includes(category)) {
-          // query db to retrieve category_id
-          console.log('CATEGORY:', category)
-          db.query(`SELECT id FROM categories WHERE name = $1`, [category])
-            .then(data => {
-              const category_id = data.rows[0].id;
+      .then(resp => {
+        categories.forEach(category => {
+          if (resp.data.choices[0].text.includes(category)) {
+            // query db to retrieve category_id
+            console.log('CATEGORY:', category);
+            db.query(`SELECT id FROM categories WHERE name = $1`, [category])
+              .then(data => {
+                const category_id = data.rows[0].id;
 
-              db.query(
+                db.query(
 
-                `UPDATE tasks SET name = $2, category_id = $3 WHERE id = $1 RETURNING *`, // do we want to update create_at on edit?
-                [taskId, name, category_id])
+                  `UPDATE tasks SET name = $2, category_id = $3 WHERE id = $1 RETURNING *`, // do we want to update create_at on edit?
+                  [taskId, name, category_id])
 
-                .then(data => {
+                  .then(data => {
 
-                  const task = data.rows[0];
-                  console.log('DATA:', data);
-                  console.log('DATA.ROWS:', data.rows);
-                  console.log('TASK:', task);
+                    const task = data.rows[0];
+                    console.log('DATA:', data);
+                    console.log('DATA.ROWS:', data.rows);
+                    console.log('TASK:', task);
 
-                  if (!task) {
-                    return res.status(404).send("<h1>Task not found!</h1>");
-                  }
-                  res.status(200).json({message: "Task updated.", taskId});
-                })
-                .catch(err => {
-                  res
-                    .status(500)
-                    .json({error: err.message});
-                });
-            });
-        }
-// FORMS CODE BEGINS
+                    if (!task) {
+                      return res.status(404).send("<h1>Task not found!</h1>");
+                    }
+                    res.status(200).json({ message: "Task updated.", taskId });
+                  })
+                  .catch(err => {
+                    res
+                      .status(500)
+                      .json({ error: err.message });
+                  });
+              });
+          }
+        })
+          .catch(err => console.log(err));
 
-        res.status(200).json({ message: "Task updated.", taskId });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-          
-// MASTER CODE 
+        // db.query(
 
+        //   `UPDATE tasks SET name = $2 WHERE id = $1 RETURNING *`, // do we want to update create_at on edit?
+        //   [taskId, name])
+
+        //   .then(data => {
+
+        //     const task = data.rows[0];
+        //     console.log('DATA:', data);
+        //     console.log('DATA.ROWS:', data.rows);
+        //     console.log('TASK:', task);
+
+        //     if (!task) {
+        //       return res.status(404).send("<h1>Task not found!</h1>");
+        //     }
+        //     res.status(200).json({message: "Task updated.", taskId});
+        //   })
+        //   .catch(err => {
+        //     res
+        //       .status(500)
+        //       .json({error: err.message});
+        //   });
       });
-    })
-    .catch(err => console.log(err));
 
-    // db.query(
+    // --------------------------------------------------------------------------------------------------
+    // DELETE /task/:id -- delete one task
 
-    //   `UPDATE tasks SET name = $2 WHERE id = $1 RETURNING *`, // do we want to update create_at on edit?
-    //   [taskId, name])
+    router.delete("/:id/delete", (req, res) => { // /task/:id isn't needed - use just /:id
+      let taskId = req.params.id;
+      // const { userId } = req.session;
 
-    //   .then(data => {
+      // const taskId = 6;
+      const userId = 1;
 
-    //     const task = data.rows[0];
-    //     console.log('DATA:', data);
-    //     console.log('DATA.ROWS:', data.rows);
-    //     console.log('TASK:', task);
+      if (!userId) {
+        return res.status(401).send("<h1>You are not logged in.</h1>"); // should this be listId?
+      }
 
-    //     if (!task) {
-    //       return res.status(404).send("<h1>Task not found!</h1>");
-    //     }
-    //     res.status(200).json({message: "Task updated.", taskId});
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({error: err.message});
-    //   });
-  });
+      db.query(`DELETE FROM tasks WHERE id = $1 RETURNING *`,
+        [taskId]
+      )
+        .then(data => {
+          console.log('DELETE:', data.rows[0]);
+          const task = data.rows[0];
+          if (!task) {
+            return res.status(404).send("<h1>Task not found!</h1>");
+          }
+          res.status(204).redirect('back'); // message isn't logged due to 204 No Content response https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        });
+    });
 
-  // --------------------------------------------------------------------------------------------------
-  // DELETE /task/:id -- delete one task
-
-  router.delete("/:id/delete", (req, res) => { // /task/:id isn't needed - use just /:id
-    let taskId = req.params.id;
-    // const { userId } = req.session;
-
-    // const taskId = 6;
-    const userId = 1;
-
-    if (!userId) {
-      return res.status(401).send("<h1>You are not logged in.</h1>"); // should this be listId?
-    }
-
-    db.query(`DELETE FROM tasks WHERE id = $1 RETURNING *`,
-      [taskId]
-    )
-      .then(data => {
-        console.log('DELETE:', data.rows[0]);
-        const task = data.rows[0];
-        if (!task) {
-          return res.status(404).send("<h1>Task not found!</h1>");
-        }
-        res.status(204).redirect('back'); // message isn't logged due to 204 No Content response https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
   });
 
   return router;
+
 };
