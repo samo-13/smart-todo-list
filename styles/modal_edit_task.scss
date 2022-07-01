@@ -1,18 +1,13 @@
-body {
-  font-family: 'Roboto', sans-serif;
-  font-size: 18px;
-  line-height: 2;
-}
 
-#editIconModalLink {
+
+.edit-modal-link {
   font-size: 26px;
   background: yellow;
   padding: 1px 2px;
-  margin-top: 10px;
   border: 1px;
 }
 
-#editIconModalLink:hover {
+.edit-modal-link:hover {
   background: teal;
 }
 
@@ -30,15 +25,17 @@ body {
   // enables scroll if content is too big
   overflow: auto;
   // use rgba to set opacity
-  background-color: rgba(206, 63, 63, 0.6) /* color with 60% opacity */
+  background-color: rgba(0, 0, 0, 0.6) /* color with 60% opacity */
 }
 
 .edit-task-modal-content {
   background: lightblue;
   margin: 15% auto;
   width: 50%;
-  padding: 10px;
+  padding: 20px;
+  padding-bottom: 40px;
   border: 1px;
+  box-shadow: 2px 2px 2px 2px #000000;
 }
 
 .edit-close-modal-button {

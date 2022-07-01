@@ -11,6 +11,16 @@ $font-family: 'Roboto', sans-serif;
   flex-direction: column;
 }
 
+#list_name {
+  display: flex;
+  justify-content: center;
+}
+
+#header_message {
+  display: flex;
+  justify-content: center;
+}
+
 .list_container {
   display: flex;
   background: orange;
