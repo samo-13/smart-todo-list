@@ -4,18 +4,6 @@ body {
   line-height: 2;
 }
 
-.modal-link {
-  font-size: 26px;
-  margin-top: 40px;;
-  background: yellow;
-  padding: 1px 2px;
-  border: 1px;
-}
-
-.modal-link:hover {
-  background: teal;
-}
-
 .list-modal {
   // hides the modal until the js triggers it open
   display: none;

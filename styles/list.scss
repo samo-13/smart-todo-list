@@ -1,5 +1,13 @@
 $font-family: 'Roboto', sans-serif;
 
+button {
+  background-color: aquamarine;
+}
+
+button:hover {
+  background-color: aqua;
+}
+
 .done {
   background-color: #ff0000;
 }
@@ -7,12 +15,14 @@ $font-family: 'Roboto', sans-serif;
 .list_page {
   display: flex;
   padding-top: 5%;
-  background: orange;
+  background: rgb(202, 171, 115);
   flex-direction: column;
 }
 
 #list_name {
   display: flex;
+  padding-top: 40px;
+  font-size: 42px;
   justify-content: center;
 }
 
@@ -23,15 +33,15 @@ $font-family: 'Roboto', sans-serif;
 
 .list_container {
   display: flex;
-  background: orange;
+
   flex-direction: row;
   justify-content: center;
 }
 
 article {
   display: flex;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
   background: lightskyblue;
@@ -39,7 +49,8 @@ article {
   align-items: center;
   justify-content: space-between;
   border: 1px solid #000000;
-  width: 75%;
+  box-shadow: 2px 2px 2px 2px #000000;
+  width: 65%;
 }
 
 .task_left {
@@ -57,5 +68,15 @@ article {
   column-gap: 10px;
 }
 
+.modal-link {
+  font-size: 26px;
+  margin-top: 40px;;
+  background: yellow;
+  padding: 1px 2px;
+  border: 2px;
+  border-color: black;
+}
 
-
+.modal-link:hover {
+  background: aqua;
+}
