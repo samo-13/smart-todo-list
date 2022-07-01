@@ -4,14 +4,15 @@ body {
   line-height: 2;
 }
 
-.modal-link {
+#editIconModalLink {
   font-size: 26px;
   background: yellow;
   padding: 1px 2px;
+  margin-top: 10px;
   border: 1px;
 }
 
-.modal-link:hover {
+#editIconModalLink:hover {
   background: teal;
 }
 
@@ -40,14 +41,14 @@ body {
   border: 1px;
 }
 
-.close-modal-button {
+.edit-close-modal-button {
   color: red;
   float: right;
   font-size: 35px;
 }
 
 // change x color when user hovers
-.close-modal-button:hover {
+.edit-close-modal-button:hover {
   color: darkred;
   cursor: pointer;
 }

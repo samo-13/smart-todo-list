@@ -91,6 +91,28 @@
       </div>
     </div>
 
+    </div>
+  </header>
+  <div class="lists"></div>
+
+  <span class="modal-link" id="modalLink"><i class="fa-solid fa-plus"></i></span>
+
+  <!-- https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data -->
+  <div id="createListModal" class="list-modal">
+    <div class="list-modal-content">
+      <!-- &times; gives us close icon -->
+      <span class="close-modal-button" id="closeModalButton">&times;</span>
+      <h3>Create new list!</h3>
+
+      <form method="POST" action="/api/lists">
+            <label for="list-name">List Name:</label>
+            <input type="text" id="list_name" name="list_name">
+
+            <button type="submit">Submit</button>
+
+      </form>
+    </div>
+  </div>
 
     <!-- This is for the create list modal form functions -->
     <script type="text/javascript" src="/scripts/create_list.js"></script>
