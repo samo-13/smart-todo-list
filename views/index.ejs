@@ -42,49 +42,38 @@
 <body class="home_page">
   <!-- include nav bar -->
   <%- include('partials/_nav') %>
-    <header class="list_header">
-      <i class="fa-solid fa-user"></i>
-      <form action="/api/users/login" method="post">
-        <input type="text" name="email" id="email">
-        <input type="password" name="password" id="password">
+
+  <header class="list_header">
+    <i class="fa-solid fa-user"></i>
+    <form action="/api/users/login" method="post">
+      <input type="text" name="email" id="email">
+      <input type="password" name="password" id="password">
+      <button type="submit">Submit</button>
+    </form>
+    <h1 id="list_name">
+      <%= name %>
+    </h1>
+  </header>
+
+  <div class="lists"></div>
+
+  <span class="modal-link" id="modalLink"><i class="fa-solid fa-plus"></i></span>
+
+  <!-- https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data -->
+  <div id="createListModal" class="list-modal">
+    <div class="list-modal-content">
+      <!-- &times; gives us close icon -->
+      <span class="close-modal-button" id="closeModalButton">&times;</span>
+      <h3>Create new list!</h3>
+
+      <form method="POST" action="/api/lists">
+        <label for="list-name">List Name:</label>
+        <input type="text" id="list_name" name="list_name">
         <button type="submit">Submit</button>
+        <p>Your task will be re-categorized upon submission.</p>
       </form>
-      <h1 id="list_name">
-        <%= name %>
-      </h1>
-      <div class="search-container">
-        <form action="#">
-          <input type="text" placeholder="Search.." name="search">
-          <button type="submit">Go</button>
-        </form>
-        <div class="task_category">
-          <a id="to_eat" href="#"><i class="fa-solid fa-burger"></i></a>
-          <a id="to_read" href="#"><i class="fa-solid fa-book"></i></a>
-          <a id="to_watch" href="#"><i class="fa-solid fa-tv"></i></a>
-          <a id="to_buy" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-        </div>
-      </div>
-    </header>
-    <div class="lists"></div>
-
-    <span class="modal-link" id="modalLink"><i class="fa-solid fa-plus"></i></span>
-
-    <!-- https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data -->
-    <div id="createListModal" class="list-modal">
-      <div class="list-modal-content">
-        <!-- &times; gives us close icon -->
-        <span class="close-modal-button" id="closeModalButton">&times;</span>
-        <h3>Create new list!</h3>
-
-        <form method="POST" action="/api/lists">
-          <label for="list-name">List Name:</label>
-          <input type="text" id="list_name" name="list_name">
-
-          <button type="submit">Submit</button>
-
-        </form>
-      </div>
     </div>
+  </div>
 
 
     <!-- This is for the create list modal form functions -->

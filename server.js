@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
+const path = require('path');
 const morgan = require("morgan");
 const methodOverride = require('method-override');
 const cookieSession = require("cookie-session");
@@ -36,6 +37,7 @@ app.use(
 );
 
 app.use(express.static("public"));
+app.use('/public', express.static(path.join(__dirname, 'public')))
 
 app.use(cookieSession({
   name: 'session',
@@ -54,16 +56,8 @@ const viewsRoutes = require("./routes/ViewsRoutes");
 app.use("/api/users", usersRoutes(db));
 app.use("/api/lists", listsRoutes(db));
 app.use("/api/tasks", tasksRoutes(db));
-
-// Note: mount other resources here, using the same pattern above
-
-// Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
-
 // for page rendering
 app.use("/", viewsRoutes(db));
-
 
 
 app.listen(PORT, () => {
