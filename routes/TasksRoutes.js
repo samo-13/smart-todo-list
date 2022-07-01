@@ -16,6 +16,7 @@ module.exports = (db) => {
 
   // --------------------------------------------------------------------------------------------------
   const generateCategory = require('../lib/generateCategory');
+  const categories = ['Film / Series', 'Books', 'Restaurants / Cafes / etc.', 'Products'];
 
   // POST /task --- create new task
   router.post("/", (req, res) => { // /task isn't needed - use just /
@@ -26,7 +27,7 @@ module.exports = (db) => {
 
     console.log('TASK NAME:', task_name)
 
-    console.log('HELLO FROM POST /API/TASKS');
+    // console.log('HELLO FROM POST /API/TASKS');
     // dummy data without priority
     const list_id = 1;
     // // const category_id = 1;
@@ -35,12 +36,12 @@ module.exports = (db) => {
     const priority = false;
     const userId = 1;
 
-    // // // dummy data with priority
-    // const list_id = 3;
-    // // const category_id = 2;
-    // const name = 'Taco Bell';
-    // const create_at = '2022-05-02';
-    // const priority = true;
+    // // dummy data with priority
+    const list_id = 11;
+    // const category_id = 2;
+    const name = 'buy a new iphone';
+    const create_at = '2022-05-02';
+    const priority = true;
 
     // make sure user is logged in
     if (!userId) {
@@ -58,6 +59,8 @@ module.exports = (db) => {
     }
 
 
+    // fetch openai to sort new task into appropriate category
+// MASTER CODE
     generateCategory(name)
     .then(resp => {
       categories.forEach(category => {
@@ -69,6 +72,7 @@ module.exports = (db) => {
             db.query(`INSERT into tasks (list_id, category_id, name, create_at, priority) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
             [list_id, category_id, name, create_at, priority])
               .then(data => {
+// FORMS CODE BELOW
                 res.redirect(`/lists/${list_id}`);
               })
               .catch(err => {
@@ -133,6 +137,31 @@ module.exports = (db) => {
     //         .status(500)
     //         .json({error: err.message});
     //     });
+// FORMS CODE ENDS
+                const category_id = data.rows[0].id;
+
+                // make new task and insert it to db as soon as category_id is found
+                db.query(
+                  `INSERT into tasks (list_id, category_id, name, create_at, priority) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+                  [list_id, category_id, name, create_at, priority]
+                )
+                  .then(data => {
+                    console.log('CONSOLE 1:', data.rows[0]);
+                    const task = data.rows[0]; // array comes back as recently created task
+                    res.status(201).json({ message: "Task created.", task });
+                  })
+                  .catch(err => {
+                    res
+                      .status(500)
+                      .json({ error: err.message });
+                  });
+              });
+          }
+        });
+      })
+      .catch(err => console.log(err));
+
+// MASTER CODE BEGINS
   });
 
 
@@ -193,6 +222,17 @@ module.exports = (db) => {
                 });
             });
         }
+// FORMS CODE BEGINS
+
+        res.status(200).json({ message: "Task updated.", taskId });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+          
+// MASTER CODE 
+
       });
     })
     .catch(err => console.log(err));
@@ -249,7 +289,7 @@ module.exports = (db) => {
       .catch(err => {
         res
           .status(500)
-          .json({error: err.message});
+          .json({ error: err.message });
       });
   });
 
