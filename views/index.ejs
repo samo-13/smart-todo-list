@@ -11,8 +11,9 @@
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/home.css" type="text/css" />
 
+
   <!-- Link createlist modal form styling -->
-  <link rel="stylesheet" href="/styles/create_list.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/modal_create_list.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
 
@@ -20,15 +21,21 @@
   <script type="text/javascript" src="/scripts/app.js"></script>
 
   <!-- link bootstrap -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0-beta1/js/bootstrap.min.js" integrity="sha512-Hqe3s+yLpqaBbXM6VA0cnj/T56ii5YjNrMT9v+us11Q81L0wzUG0jEMNECtugqNu2Uq5MSttCg0p4KK0kCPVaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0-beta1/js/bootstrap.min.js"
+    integrity="sha512-Hqe3s+yLpqaBbXM6VA0cnj/T56ii5YjNrMT9v+us11Q81L0wzUG0jEMNECtugqNu2Uq5MSttCg0p4KK0kCPVaQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- load custom fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
 
   <!-- link font awesome for icons from cdnjs.com -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -37,11 +44,15 @@
   <%- include('partials/_nav') %>
 
   <header class="list_header">
-    <!-- <i class="fa-solid fa-user"></i> -->
-    <div class="header-image">
-      <!-- user avatar? -->
-    </div>
-    <h1 id="list_name">Username</h1>
+    <i class="fa-solid fa-user"></i>
+    <form action="/api/users/login" method="post">
+      <input type="text" name="email" id="email">
+      <input type="password" name="password" id="password">
+      <button type="submit">Submit</button>
+    </form>
+    <h1 id="list_name">
+      <%= name %>
+    </h1>
   </header>
 
   <div class="lists"></div>
@@ -54,26 +65,20 @@
       <!-- &times; gives us close icon -->
       <span class="close-modal-button" id="closeModalButton">&times;</span>
       <h3>Create new list!</h3>
-      <p>Add at least one task to get started!</p>
+
       <form method="POST" action="/api/lists">
-            <label for="list-name">List Name:</label>
-            <input type="text" id="list_name" name="list_name">
-
-            <label for="task-1">Task 1:</label>
-            <input type="task" id="task" name="task">
-
-            <label for="task-2">Task 2:</label>
-            <input type="task" id="task" name="task">
-
-            <button type="submit">Submit</button>
-            <p>Your task will be re-categorized upon submission.</p>
+        <label for="list-name">List Name:</label>
+        <input type="text" id="list_name" name="list_name">
+        <button type="submit">Submit</button>
+        <p>Your task will be re-categorized upon submission.</p>
       </form>
     </div>
   </div>
 
 
-  <!-- This is for the create list modal form functions -->
-  <script type="text/javascript" src="/scripts/create_list.js"></script>
-  <!-- <script type="text/javascript" src="/scripts/ListsRoutes.js"></script> -->
+    <!-- This is for the create list modal form functions -->
+    <script type="text/javascript" src="/scripts/create_list.js"></script>
+    <!-- <script type="text/javascript" src="/scripts/ListsRoutes.js"></script> -->
 </body>
+
 </html>
