@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
+const path = require('path');
 const morgan = require("morgan");
 const methodOverride = require('method-override');
 // const cookieSession = require("cookie-session");
@@ -36,6 +37,7 @@ app.use(
 );
 
 app.use(express.static("public"));
+app.use('/public', express.static(path.join(__dirname, 'public')))
 
 // app.use(cookieSession({
 //   name: 'session',
