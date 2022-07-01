@@ -15,12 +15,13 @@ module.exports = (db) => {
   // login routes
   router.post('/login', (req, res) => {
     // const {email, password} = req.body;
-    const email = 'jon-smith99@hotmail.com';
-    const password = 'myPassword';
+    const email = 'billywong@outlook.com';
+    const password = 'password';
 
     db.query(`SELECT * FROM users WHERE email = $1`, [email])
       .then(data => {
         if (data.rowCount > 0 && bcrypt.compareSync(password, data.rows[0].password)) {
+          console.log(data.rows[0]);
           req.session.userId = data.rows[0].id; // set cookies
           res.redirect('/');
         } else {
@@ -35,7 +36,8 @@ module.exports = (db) => {
 
   router.post('/logout', (req, res) => {
     req.session = null; // remove browser cookies
-    res.redirect('/login');
+    res.redirect('/');
+
   });
 
   router.get('/login', (req, res) => {

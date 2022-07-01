@@ -10,7 +10,11 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    res.render("index");
+    db.query(`SELECT name FROM users WHERE id = $1`, [req.session.userId])
+      .then(data => {
+        const name = data.rowCount > 0 ? data.rows[0].name : 'User';
+        res.render('index', {name});
+      });
   });
 
   // All good layout! -caitlin says

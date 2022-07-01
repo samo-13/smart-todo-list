@@ -87,4 +87,12 @@ $(document).ready(function () {
   };
   // renderLists(listsData);
   loadLists();
+
+  // logout
+  $('.nav-link-logout').on('click', () => {
+    $.ajax({
+      url: '/api/users/logout',
+      method: 'POST',
+    });
+  });
 });
