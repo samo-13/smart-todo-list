@@ -22,6 +22,7 @@ module.exports = (db) => {
   // All good layout! -caitlin says
   router.get("/lists/:id", (req, res) => {
     //grab id
+    console.log("i got here")
     const { id } = req.params;
     const templateVars = { id };
 

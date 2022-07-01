@@ -71,6 +71,7 @@
 
       <form method="POST" action="/api/tasks">
             <label for="task-name">Task Name:</label>
+            <input type="hidden" name="list_id" value="<%= id %>">
             <input type="text" id="task_name" name="task_name">
             <button>Submit</button>
             <p>Your task will be auto-categorized upon submission.</p>

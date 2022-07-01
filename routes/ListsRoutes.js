@@ -1,4 +1,3 @@
-const { response } = require('express');
 const express = require('express');
 const router = express.Router();
 
@@ -82,7 +81,7 @@ module.exports = (db) => {
     const { id } = req.params;
 
     db.query(
-      `SELECT lists.name AS list_name, tasks.name AS task_name, tasks.id AS task_id, tasks.category_id AS category_id
+      `SELECT lists.name AS list_name, lists.id AS list_id, tasks.name AS task_name, tasks.id AS task_id, tasks.category_id AS category_id
       FROM lists JOIN tasks ON lists.id = list_id WHERE lists.id = $1`,
       [id])
       .then(data => {
@@ -99,6 +98,7 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
+      // exports = { id };
   });
 
 

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+// const list_id = require('ListsRoutes.js').id
 
 module.exports = (db) => {
   const generateCategory = require('../lib/generateCategory');
@@ -10,13 +11,16 @@ module.exports = (db) => {
     // uncomment line below when app is ready + remove dummy data
     // console.log('REQ.SESSION:', req.session);
     const { userId } = req.session;
+    const { list_id } = req.body;
+    console.log("list id", list_id)
+
     const { task_name } = req.body;
 
     // console.log('TASK NAME:', task_name)
 
     // // console.log('HELLO FROM POST /API/TASKS');
     // // dummy data without priority
-    const list_id = 13;
+
     // // // const category_id = 1;
     // // const name = 'Stranger Things';
     const create_at = new Date();
