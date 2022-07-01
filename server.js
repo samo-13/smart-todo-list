@@ -54,16 +54,8 @@ const viewsRoutes = require("./routes/ViewsRoutes");
 // app.use("/api/users", usersRoutes(db));
 app.use("/api/lists", listsRoutes(db));
 app.use("/api/tasks", tasksRoutes(db));
-
-// Note: mount other resources here, using the same pattern above
-
-// Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
-
 // for page rendering
 app.use("/", viewsRoutes(db));
-
 
 
 app.listen(PORT, () => {
