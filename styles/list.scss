@@ -1,5 +1,9 @@
 $font-family: 'Roboto', sans-serif;
 
+.done {
+  background-color: #ff0000;
+}
+
 .list_page {
   display: flex;
   padding-top: 5%;
@@ -11,12 +15,15 @@ $font-family: 'Roboto', sans-serif;
   display: flex;
   background: orange;
   flex-direction: row;
+  justify-content: center;
 }
 
 article {
   display: flex;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   background: lightskyblue;
   flex-direction: row;
   align-items: center;
@@ -31,9 +38,13 @@ article {
   align-items: center;
   justify-content: space-between;
   padding-left: 20px;
+  column-gap: 20px;
 }
 
 .task_right {
   display: flex;
   padding-right: 20px;
+  column-gap: 10px;
 }
+
+

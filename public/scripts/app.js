@@ -42,7 +42,7 @@ $(document).ready(function () {
           <a href = /lists/${list.id}><h2 id="list_name">${list.name}</h2></a>
           </div>
           <div class="list_right">
-          <form method="post" action='/api/lists/${list.id}/delete?_method=DELETE'><button type="submit">Delete</button></form>
+          <form method="post" action='/api/lists/${list.id}/delete?_method=DELETE'><button type="submit"><i class="fa-solid fa-trash-can"></i></button></form>
           </div>
           </article>
         </div>
@@ -88,3 +88,4 @@ $(document).ready(function () {
   // renderLists(listsData);
   loadLists();
 });
+
