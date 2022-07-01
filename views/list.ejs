@@ -50,10 +50,10 @@
       <!-- &times; gives us close icon -->
       <span class="edit-close-modal-button" id="closeEditModalButton">&times;</span>
       <h3>Edit task: <span id="editTaskNameId"></span></h3>
-      <form method="PUT" action="/api/tasks/">
+      <form id="editTaskForm" method="POST" action="/api/tasks/">
             <label for="task-name">New task name:</label>
-            <input type="text" id="task_name" name="task_name">
-            <button>Submit</button>
+            <input type="text" id="new_task_name" name="task_name">
+            <button type="submit" formmethod="PUT">Submit</button>
       </form>
     </div>
   </div>

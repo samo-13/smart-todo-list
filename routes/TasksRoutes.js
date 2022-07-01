@@ -27,7 +27,7 @@ module.exports = (db) => {
     // const list_id = 1;
     // // const category_id = 1;
     // const name = 'Stranger Things';
-    // const create_at = '2022-05-02';
+    // const create_at = '2022-05-02';76
     // const priority = false;
     const userId = 1;
 
@@ -109,14 +109,17 @@ module.exports = (db) => {
     let taskId = req.params.id;
     // const { list_id, category_id, name, create_at, priority } = req.body; //is this correct?
     // const { userId } = req.session;
+    const { name } = req.body;
 
     // dummy data
     // const taskId = 4
     // const list_id = 1
-    const category_id = 4;
-    const name = 'Changed Name 7';
-    const priority = false;
+    const category_id = null;
+    // const name = 'Changed Name 7';
+    const priority = null;
     const userId = 1;
+
+    console.log('NAME:', name)
 
     if (!userId) {
       return res.status(401).send("<h1>You are not logged in.</h1>");

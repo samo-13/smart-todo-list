@@ -45,6 +45,47 @@ $(document).ready(function() {
           </div>
           </article>
         </div>
+
+        <script>
+        $('.list').on("click", '#editTaskIconLink-${taskId}', function() {
+
+
+          $('#editTaskNameId').text(taskName);
+          const editTaskModal = document.getElementById("editTaskModal");
+          const closeEditModalButton = document.getElementById("closeEditModalButton");
+
+          let displayEditModal = function() {
+
+              $( "#editTaskForm" ).submit(function(event) {
+                console.log("preventing form from being submitted");
+                event.preventDefault();
+                const name = $('#new_task_name').val();
+                $.ajax({
+                  url: '/api/tasks/${taskId}',
+                  method: 'PUT',
+                  dataType: 'json',
+                  data: { name: name }
+                })
+                .then(function() {
+                  exitEditModal()
+                  document.location.reload()
+
+                })
+              });
+
+            console.log('Hello from displayEditModal function');
+            editTaskModal.style.display = 'block';
+          };
+
+          let exitEditModal = function() {
+            console.log('Hello from closeEditModal function');
+            editTaskModal.style.display = 'none';
+          };
+
+          displayEditModal();
+          closeEditModalButton.addEventListener('click', exitEditModal);
+        });
+        </script>
         `);
     console.log('createListElement:', $list);
 
@@ -52,33 +93,6 @@ $(document).ready(function() {
 
   };
 
-
-  $('.list').on("click", `#editTaskIconLink-${taskId}`, function() {
-
-    console.log('TASK:', task);
-
-    console.log($("#editTaskNameId"));
-
-    $('#editTaskNameId').text(taskName);
-
-    console.log('The edit icon was clicked!');
-    console.log('TASK NAME:', taskName);
-
-    const closeEditModalButton = document.getElementById("closeEditModalButton");
-
-    let displayEditModal = function() {
-      console.log('Hello from displayEditModal function');
-      editTaskModal.style.display = 'block';
-    };
-
-    let exitEditModal = function() {
-      console.log('Hello from closeEditModal function');
-      editTaskModal.style.display = 'none';
-    };
-
-    displayEditModal();
-    closeEditModalButton.addEventListener('click', exitEditModal);
-  });
 
 
   // IMPLEMENT TO LOAD TASKS/ONE LIST USING AJAX (SIMILAR TO TWEETER)
