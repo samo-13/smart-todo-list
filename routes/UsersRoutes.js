@@ -14,14 +14,14 @@ const router = express.Router();
 module.exports = (db) => {
   // login routes
   router.post('/login', (req, res) => {
-    // const {email, password} = req.body;
-    const email = 'billywong@outlook.com';
-    const password = 'password';
+    const { email, password } = req.body;
+    // const email = 'billywong@outlook.com';
+    // const password = 'password';
 
     db.query(`SELECT * FROM users WHERE email = $1`, [email])
       .then(data => {
         if (data.rowCount > 0 && bcrypt.compareSync(password, data.rows[0].password)) {
-          console.log(data.rows[0]);
+          // console.log(data.rows[0]);
           req.session.userId = data.rows[0].id; // set cookies
           res.redirect('/');
         } else {
@@ -30,7 +30,7 @@ module.exports = (db) => {
       }).catch(err => {
         res
           .status(500)
-          .json({error: err.message});
+          .json({ error: err.message });
       });
   });
 
@@ -47,7 +47,7 @@ module.exports = (db) => {
         .catch(err => {
           res
             .status(500)
-            .json({error: err.message});
+            .json({ error: err.message });
         });
     } else {
       res.status(400).send('<h1>Please log in.</h1>');
@@ -75,14 +75,14 @@ module.exports = (db) => {
             .catch(err => {
               res
                 .status(500)
-                .json({error: err.message});
+                .json({ error: err.message });
             });
         }
       })
       .catch(err => {
         res
           .status(500)
-          .json({error: err.message});
+          .json({ error: err.message });
       });
   });
 
@@ -93,7 +93,7 @@ module.exports = (db) => {
         .catch(err => {
           res
             .status(500)
-            .json({error: err.message});
+            .json({ error: err.message });
         });
     } else {
       res.render('register'); // create register form later?
