@@ -172,7 +172,7 @@ module.exports = (db) => {
         if (!task) {
           return res.status(404).send("<h1>Task not found!</h1>");
         }
-        res.status(204).json({message: "Task deleted."}); // message isn't logged due to 204 No Content response https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+        res.status(204).redirect('back'); // message isn't logged due to 204 No Content response https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
       })
       .catch(err => {
         res

@@ -9,7 +9,7 @@ let taskId
 let listId
 
 
-$(document).ready(function() {
+$(document).ready(function () {
 
   console.log('HI, FROM DOCUMENT.READY FUNCTION');
 
@@ -30,7 +30,7 @@ $(document).ready(function() {
     console.log('listId', listId);
 
     const $list =
-        $(`
+      $(`
         <div class="list_container">
           <article>
             <div class="task_left">
@@ -136,5 +136,4 @@ $(document).ready(function() {
   };
 
   loadList();
-
 });
