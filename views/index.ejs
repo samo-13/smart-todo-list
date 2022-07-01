@@ -61,19 +61,13 @@
       <!-- &times; gives us close icon -->
       <span class="close-modal-button" id="closeModalButton">&times;</span>
       <h3>Create new list!</h3>
-      <p>Add at least one task to get started!</p>
+
       <form method="POST" action="/api/lists">
             <label for="list-name">List Name:</label>
             <input type="text" id="list_name" name="list_name">
 
-            <label for="task-1">Task 1:</label>
-            <input type="task" id="task" name="task">
-
-            <label for="task-2">Task 2:</label>
-            <input type="task" id="task" name="task">
-
             <button type="submit">Submit</button>
-            <p>Your task will be re-categorized upon submission.</p>
+
       </form>
     </div>
   </div>
