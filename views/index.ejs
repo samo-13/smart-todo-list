@@ -35,22 +35,15 @@
 <body class="home_page">
   <!-- include nav bar -->
   <%- include('partials/_nav') %>
+
   <header class="list_header">
-    <i class="fa-solid fa-user"></i>
+    <!-- <i class="fa-solid fa-user"></i> -->
+    <div class="header-image">
+      <!-- user avatar? -->
+    </div>
     <h1 id="list_name">Username</h1>
-    <div class="search-container">
-      <form action="#">
-        <input type="text" placeholder="Search.." name="search">
-        <button type="submit">Go</button>
-      </form>
-      <div class="task_category">
-        <a id="to_eat" href="#"><i class="fa-solid fa-burger"></i></a>
-        <a id="to_read" href="#"><i class="fa-solid fa-book"></i></a>
-        <a id="to_watch" href="#"><i class="fa-solid fa-tv"></i></a>
-        <a id="to_buy" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-    </div>
-    </div>
   </header>
+
   <div class="lists"></div>
 
   <span class="modal-link" id="modalLink"><i class="fa-solid fa-plus"></i></span>
