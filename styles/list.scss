@@ -3,11 +3,12 @@ $background-color: #d9d9d9;
 $font: black;
 
 button {
-  background-color: white;
+  background-color: #fcde67;
+  cursor: pointer;
 }
 
 button:hover {
-  background-color: #e1ff32;
+  background-color: aqua;
 }
 
 .done {
@@ -24,7 +25,8 @@ button:hover {
 
 #list_name {
   display: flex;
-  padding-top: 60px;
+  padding-top: 80px;
+  padding-bottom: 0px;
   font-size: 42px;
   justify-content: center;
 }
@@ -46,7 +48,7 @@ article {
   padding-bottom: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
-  background: lightskyblue;
+  background: #5bccf6;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -78,15 +80,21 @@ article {
   margin-top: 40px;
   margin-bottom: 20px;
   margin-right: 10%;
-  background: white;
+  background: #fcde67;
   border-style: solid;
   border-color: black;
   border-width: 2px;
   align-self: flex-end;
   width: 20%;
   box-shadow: 2px 2px 2px 2px #000000;
+  cursor: pointer;
 }
 
 .modal-link:hover {
-  background: aqua;
+  background:  aqua;
+}
+
+.fa-solid-fa-solid fa-burger,
+.fa-solid fa-tv {
+  color: red;
 }
