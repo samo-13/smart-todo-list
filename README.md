@@ -14,7 +14,7 @@ This app was designed as a Midterm project by Sarah Moss, Billy Wong, and Caitli
 6. Check the db folder to see what gets created and seeded in the SDB
 7. Create the .env by using .env.example as a reference.
 8. Configure your .env file with your correct local information.
-9. In order to access [Open AI's API](https://openai.com/api/), you will need to get a key and add it to the .env file.
+9. In order to access [OpenAI's API](https://openai.com/api/), you will need to get a key and add it to the .env file.
 10. Start the web server using the npm run local command. The app will be served at http://localhost:8080/
 11. Go to http://localhost:8080/ in your browser.
 
@@ -31,7 +31,7 @@ This app was designed as a Midterm project by Sarah Moss, Billy Wong, and Caitli
 * EJS
 * Method-override
 * Morgan
-* Openai
+* OpenAI
 * SASS
 
 ## Using Smart To Do List
@@ -48,12 +48,12 @@ This app was designed as a Midterm project by Sarah Moss, Billy Wong, and Caitli
 * View all tasks connected to the list.
 * Create a new task, by clicking the plus sign icon on the bottom of the page.
 * Delete a task, by clicking on the trash bin icon next to the task you wish to delete.
-* Edit a task name, by click on the note pad icon next to the task you wish to edit.
+* Edit a task name, by clicking on the note pad icon next to the task you wish to edit.
 * Deselect a task, by clicking the checkbox next to the task. In future versions of the app, this will 'cross' the task off your list.
 
 ### Categories
 
-[Open AI's API](https://openai.com/api/) will automatically categorize each task for you when the task is created. When the task is edited, the AI will update the task category if required.
+[OpenAI's API](https://openai.com/api/) will automatically categorize each task for you when the task is created. When the task is edited, the AI will update the task category if required.
 
 Tasks are organized into one of four categories in the database and are labelled with one of the four corresponding category icons: 
 
