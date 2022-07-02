@@ -64,5 +64,15 @@ $(document).ready(function () {
   };
   // // renderLists(listsData);
   loadLists();
+
+
+  $('.nav-link-logout').on('click', function () {
+    $.ajax({
+      url: '/api/users/login',
+      method: 'POST',
+      dataType: "json"
+    });
+  });
+
 });
 

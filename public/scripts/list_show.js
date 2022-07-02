@@ -45,7 +45,7 @@ $(document).ready(function() {
           </div>
           <div class="task_right">
               <span class="edit_task_link" id="editTaskIconLink-${taskId}"><button><i class="fa-solid fa-pen-to-square" id="editIconModalLink"></i></button></span>
-              <form method="post" action='/api/tasks/${taskId}/delete?_method=DELETE'><button type="submit"><i class="fa-solid fa-trash-can"></i></button></form>
+              <form method="post" action='/api/tasks/${taskId}?_method=DELETE'><button type="submit"><i class="fa-solid fa-trash-can"></i></button></form>
               </div>
           </article>
         </div>

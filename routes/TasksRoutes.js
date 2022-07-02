@@ -164,12 +164,12 @@ module.exports = (db) => {
     // --------------------------------------------------------------------------------------------------
     // DELETE /task/:id -- delete one task
 
-    router.delete("/:id/delete", (req, res) => { // /task/:id isn't needed - use just /:id
+    router.delete("/:id", (req, res) => { // /task/:id isn't needed - use just /:id
       let taskId = req.params.id;
-      // const { userId } = req.session;
+      const { userId } = req.session;
 
       // const taskId = 6;
-      const userId = 1;
+      // const userId = 1;
 
       if (!userId) {
         return res.status(401).send("<h1>You are not logged in.</h1>"); // should this be listId?
