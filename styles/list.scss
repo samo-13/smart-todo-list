@@ -1,4 +1,5 @@
 $font-family: 'Roboto', sans-serif;
+$background-color: #d9d9d9;
 
 button {
   background-color: aquamarine;
@@ -15,7 +16,7 @@ button:hover {
 .list_page {
   display: flex;
   padding-top: 5%;
-  background: rgb(202, 171, 115);
+  background: $background-color;
   flex-direction: column;
 }
 
@@ -50,7 +51,7 @@ article {
   justify-content: space-between;
   border: 1px solid #000000;
   box-shadow: 2px 2px 2px 2px #000000;
-  width: 65%;
+  // width: 65%;
 }
 
 .task_left {
@@ -70,11 +71,18 @@ article {
 
 .modal-link {
   font-size: 26px;
-  margin-top: 40px;;
-  background: yellow;
-  padding: 1px 2px;
-  border: 2px;
+  text-align: center;
+  align-items: center;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 20%;
+  background: pink;
+  border-style: solid;
   border-color: black;
+  border-width: 2px;
+  align-self: flex-end;
+  width: 20%;
 }
 
 .modal-link:hover {
