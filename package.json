@@ -1,7 +1,7 @@
 {
-  "name": "node-skeleton",
+  "name": "smart-to-do-list",
   "version": "1.0.0",
-  "description": "",
+  "description": "Smart to do is a multi-page app that uses Open AI to automatically categorize your tasks for you.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
     "local": "./node_modules/.bin/nodemon -L --ignore public/",
     "db:reset": "node bin/resetdb.js"
   },
-  "author": "Lighthouse Labs",
+  "author": "Sarah Moss, Billy Wong, Caitlin Croteau",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
