@@ -1,10 +1,29 @@
 $font-family: 'Roboto', sans-serif;
+$background-color: #d9d9d9;
+$font-color: black;
 
 .home_page {
   display: flex;
   padding-top: 5%;
-  background: lightsalmon;
+  background: $background-color;
   flex-direction: column;
+}
+
+a:visited, a:link, a:active {
+  text-decoration: none;
+  color: black;
+};
+
+a:hover {
+  color: brown;
+}
+
+button {
+  background-color: white;
+}
+
+button:hover {
+  background-color: #e1ff32;
 }
 
 .list_header {
@@ -14,20 +33,25 @@ $font-family: 'Roboto', sans-serif;
 
 .list_container {
   display: flex;
-  background: orange;
+  background: $background-color;
   flex-direction: row;
+  justify-content: center;
 }
 
+// HOMEPAGE LIST CONTAINER
 article {
   display: flex;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  background: lightseagreen;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: lightskyblue;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   border: 1px solid #000000;
-  width: 75%;
+  box-shadow: 2px 2px 2px 2px #000000;
+  width: 65%;
 }
 
 .list_left {
@@ -36,6 +60,7 @@ article {
   align-items: center;
   justify-content: space-between;
   padding-left: 20px;
+  column-gap: 20px;
 }
 
 .list_right {
@@ -43,10 +68,32 @@ article {
   padding-right: 20px;
 }
 
+.modal-link {
+  font-size: 26px;
+  text-align: center;
+  align-items: center;
+  padding: 20px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  margin-right: 10%;
+  background: white;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  align-self: flex-end;
+  width: 20%;
+  box-shadow: 2px 2px 2px 2px #000000;
+}
+
+.modal-link:hover {
+  background: #e1ff32;
+}
+
+
 #task_count {
   color: brown;
 }
 
-article:hover {
-box-shadow: 5px 5px 0  lightskyblue;
-};
+// article:hover {
+// box-shadow: 5px 5px 0  brown;
+// };
