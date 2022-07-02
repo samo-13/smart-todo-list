@@ -9,8 +9,8 @@ This app was designed as a Midterm project by Sarah Moss, Billy Wong, and Caitli
 1. [Create](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) a new repository using this repository as a template.
 2. Clone your repository onto your local device.
 3. Install dependencies using the npm install command.
-4. Fix to binaries for sass: npm rebuild node-sass
-5. Reset database: npm run db:reset
+4. Fix to binaries for sass: `npm rebuild node-sass`
+5. Reset database: `npm run db:reset`
 6. Check the db folder to see what gets created and seeded in the SDB
 7. Create the .env by using .env.example as a reference.
 8. Configure your .env file with your correct local information.
