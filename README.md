@@ -1,6 +1,8 @@
 ## Smart To Do List Project
 
-Smart To Do List is a multi-page app that uses Open AI to automatically categorize your tasks for you. This app was designed as a Midterm project by Sarah Moss, Billy Wong, and Caitlin Croteau for Lighthouse Labs' Web Development program.
+Smart To Do List is a multi-page app that uses Open AI to automatically categorize your tasks for you.
+
+This app was designed as a Midterm project by Sarah Moss, Billy Wong, and Caitlin Croteau for Lighthouse Labs' Web Development program.
 
 ## Getting Started
 
