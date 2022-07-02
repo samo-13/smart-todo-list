@@ -1,4 +1,7 @@
 nav {
+  a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+  };
   display: flex;
   flex-direction: row;
   font-family: 'Roboto', sans-serif;
@@ -33,11 +36,6 @@ nav {
   height: 90%;
   width: 30%;
 
-}
-
-a:hover, a:visited, a:link, a:active
-{
-    text-decoration: none;
 }
 
 
